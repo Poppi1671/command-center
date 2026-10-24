@@ -123,13 +123,17 @@ nav button:hover { transform: translateX(4px); }
 .hero-3d svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 22px 24px color-mix(in srgb, var(--accent) 35%, transparent)); }
 @keyframes spin { 0%,100% { transform: rotateY(-18deg) rotateX(8deg) translateY(0); } 50% { transform: rotateY(18deg) rotateX(-6deg) translateY(-10px); } }
 @media (prefers-reduced-motion: reduce) { .hero-3d { animation: none; } }
+
+/* Real 3D emblem (Three.js) */
+#emblem3d { width: min(260px, 70vw); aspect-ratio: 1; }
+#emblem3d canvas { width: 100% !important; height: 100% !important; display: block; }
 </style>
 </head>
 <body>
 
 <header class="top">
   <div class="brand">
-    <div class="hero-wrap"><div class="hero"><h1 class="hero-title">3G's Command Center</h1><p class="hero-sub">One place for stores, posting, money, and the academy.</p></div><div class="hero-3d" aria-hidden="true"><svg viewBox="0 0 200 200"><defs><linearGradient id="tee" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--panel)"/></linearGradient></defs><path d="M62 30 L24 52 L40 88 L56 80 L56 178 L144 178 L144 80 L160 88 L176 52 L138 30 C128 46 72 46 62 30 Z" fill="url(#tee)" stroke="var(--fg)" stroke-opacity=".25" stroke-width="2" stroke-linejoin="round"/><path d="M90 178 C90 150 110 150 110 178" fill="none" stroke="var(--fg)" stroke-opacity=".3" stroke-width="2"/><text x="100" y="128" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-weight="700" font-size="30" fill="var(--bg)">3G's</text></svg></div></div>
+    <div class="hero-wrap"><div class="hero"><h1 class="hero-title">3G's Command Center</h1><p class="hero-sub">One place for stores, posting, money, and the academy.</p></div><div id="emblem3d" aria-label="3D 3G's emblem"></div></div>
     
   </div>
   <label class="muted" for="themePick" style="display:flex;gap:8px;align-items:center">Theme <select id="themePick" style="font:inherit;padding:8px;border-radius:6px;background:var(--panel);color:var(--fg);border:1px solid var(--line)"><option value="ggfg-navy">GGFG Navy</option><option value="cream-classic">Cream Classic</option><option value="midnight-gold">Midnight Gold</option><option value="emerald">Emerald</option><option value="royal-purple">Royal Purple</option><option value="ember">Ember</option><option value="ocean">Ocean</option><option value="forest">Forest</option><option value="slate-mono">Slate Mono</option><option value="rose-gold">Rose Gold</option></select></label>
@@ -283,6 +287,47 @@ nav button:hover { transform: translateX(4px); }
   try { saved = localStorage.getItem('cc-theme'); } catch (e) {}
   applyTheme(saved || 'ggfg-navy');
   if (pick) pick.addEventListener('change', function () { applyTheme(pick.value); });
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r160/three.min.js"></script>
+<script>
+(function () {
+  var host = document.getElementById('emblem3d');
+  if (!host || !window.THREE) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var scene = new THREE.Scene();
+  var cam = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+  cam.position.set(0, 0, 5.2);
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  host.appendChild(renderer.domElement);
+  var key = new THREE.DirectionalLight(0xffffff, 1.4); key.position.set(3, 4, 5); scene.add(key);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+  var rim = new THREE.PointLight(0xffffff, 1.2, 20); rim.position.set(-4, -2, 3); scene.add(rim);
+  var mat = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 0.9, roughness: 0.22 });
+  var knot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.0, 0.36, 220, 32), mat);
+  scene.add(knot);
+  var halo = new THREE.Mesh(new THREE.TorusGeometry(1.9, 0.03, 16, 160),
+    new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.35 }));
+  scene.add(halo);
+  function accent() {
+    var v = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    try { mat.color.set(v || '#D4AF37'); } catch (e) {}
+  }
+  function resize() {
+    var w = host.clientWidth || 260; renderer.setSize(w, w, false); cam.aspect = 1; cam.updateProjectionMatrix();
+  }
+  resize(); accent();
+  window.addEventListener('resize', resize);
+  new MutationObserver(accent).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  var t = 0;
+  function frame() {
+    t += 0.01;
+    if (!reduce) { knot.rotation.y += 0.012; knot.rotation.x = Math.sin(t) * 0.25; halo.rotation.x = Math.PI / 2 + Math.sin(t * 0.5) * 0.3; halo.rotation.z = t * 0.2; }
+    renderer.render(scene, cam);
+    requestAnimationFrame(frame);
+  }
+  frame();
 })();
 </script>
 </body>
