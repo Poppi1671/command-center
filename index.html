@@ -90,12 +90,11 @@ th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
 
 /* Extraordinary layer: living background, 3D tilt cards, gold glow, stagger entrance */
 body { position: relative; overflow-x: hidden; }
-body::after { content: ""; position: fixed; inset: -20%; z-index: -1; pointer-events: none; opacity: .55;
-  background:
-    radial-gradient(40% 35% at 20% 25%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 70%),
-    radial-gradient(35% 30% at 80% 70%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+body::after { content: ""; position: fixed; inset: -20%; z-index: -1; pointer-events: none; opacity: .85;
+  background: var(--art);
+  transform-origin: 50% 100%; transform: perspective(900px) rotateX(18deg) scale(1.15);
   animation: drift 18s ease-in-out infinite alternate; }
-@keyframes drift { from { transform: translate3d(-3%,-2%,0) scale(1); } to { transform: translate3d(3%,2%,0) scale(1.06); } }
+@keyframes drift { from { transform: perspective(900px) rotateX(18deg) translate3d(-2%,-1%,0) scale(1.15); } to { transform: perspective(900px) rotateX(14deg) translate3d(2%,1%,0) scale(1.2); } }
 .card { transform-style: preserve-3d; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   will-change: transform; animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
 .grid > .card:nth-child(2) { animation-delay: .08s; } .grid > .card:nth-child(3) { animation-delay: .16s; } .grid > .card:nth-child(4) { animation-delay: .24s; }
@@ -105,6 +104,18 @@ body::after { content: ""; position: fixed; inset: -20%; z-index: -1; pointer-ev
 nav button { transition: transform .2s ease, box-shadow .2s ease; }
 nav button:hover { transform: translateX(4px); }
 @media (prefers-reduced-motion: reduce) { body::after, .card { animation: none !important; transition: none !important; } }
+/* Per-theme 3D backgrounds */
+:root { --art: radial-gradient(40% 35% at 20% 25%, color-mix(in srgb, #D4AF37 35%, transparent), transparent 70%); }
+[data-theme="ggfg-navy"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #D4AF37 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #1A3A5C 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #D4AF37 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="cream-classic"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #1A3A5C 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #D4AF37 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #1A3A5C 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="midnight-gold"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #D4AF37 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #2A2415 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #D4AF37 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="emerald"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #2E7D5E 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #0B3B2B 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #2E7D5E 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="royal-purple"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #B794F4 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #3B1F6B 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #B794F4 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="ember"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #E0803A 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #6B2A12 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #E0803A 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="ocean"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #38BDF8 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #0B3A5C 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #38BDF8 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="forest"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #A3B86B 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #2E3D1C 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #A3B86B 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="slate-mono"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #E5E7EB 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #2A2F3A 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #E5E7EB 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="rose-gold"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #E0A99A 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #5A2E38 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #E0A99A 14%, transparent) 60% 61%, transparent 61%); }
 </style>
 </head>
 <body>
