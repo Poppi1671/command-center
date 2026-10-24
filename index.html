@@ -134,6 +134,9 @@ nav button:hover { transform: translateX(4px); }
 
 /* Cinematic crown backdrop, faded into each theme */
 #cinema { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent), var(--bg) 92%), url("assets/crown-cinematic.jpg") center top / cover no-repeat; }
+
+/* Torch backdrop for Ember and Midnight Gold */
+html[data-theme="ember"] #cinema, html[data-theme="midnight-gold"] #cinema { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent), var(--bg) 92%), url("assets/torch-cinematic.jpg") center top / cover no-repeat; }
 </style>
 </head>
 <body>
