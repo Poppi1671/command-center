@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
-<title>3G's Command Center</title>
+<title>3G's Command Center v2</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
 <style>
 /* Layout: left rail of sections on wide screens, stacked on phones.
@@ -15,24 +15,24 @@
   --gold: #D4AF37;
   --green: #2E7D5E;
   --cream: #F9F5EF;
-  --bg: #F9F5EF;
-  --fg: #0D1F2D;
-  --panel: #FFFFFF;
-  --line: #D9D2C3;
-  --muted: #5B6B7A;
-  --accent: #1A3A5C;
-  --gold-ink: #7A5F0E;
-  color-scheme: light;
+  --bg: #0D1F2D;
+  --fg: #F9F5EF;
+  --panel: #14304A;
+  --line: #24435F;
+  --muted: #A9B8C6;
+  --accent: #D4AF37;
+  --gold-ink: #D4AF37;
+  color-scheme: dark;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0D1F2D; --fg: #F9F5EF; --panel: #14304A; --line: #24435F;
-    --muted: #A9B8C6; --accent: #D4AF37; --gold-ink: #D4AF37; color-scheme: dark;
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #F9F5EF; --fg: #0D1F2D; --panel: #FFFFFF; --line: #D9D2C3;
+    --muted: #5B6B7A; --accent: #1A3A5C; --gold-ink: #7A5F0E; color-scheme: light;
   }
 }
-:root[data-theme="dark"] {
-  --bg: #0D1F2D; --fg: #F9F5EF; --panel: #14304A; --line: #24435F;
-  --muted: #A9B8C6; --accent: #D4AF37; --gold-ink: #D4AF37; color-scheme: dark;
+:root[data-theme="light"] {
+  --bg: #F9F5EF; --fg: #0D1F2D; --panel: #FFFFFF; --line: #D9D2C3;
+  --muted: #5B6B7A; --accent: #1A3A5C; --gold-ink: #7A5F0E; color-scheme: light;
 }
 * { box-sizing: border-box; }
 body {
