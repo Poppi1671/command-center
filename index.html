@@ -87,6 +87,24 @@ th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
 @keyframes shine { from { background-position: 0% 50%; } to { background-position: 250% 50%; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .hero-title, .hero-sub { animation: none !important; opacity: 1; transform: none; } .hero-title { color: var(--gold); background: none; } }
+
+/* Extraordinary layer: living background, 3D tilt cards, gold glow, stagger entrance */
+body { position: relative; overflow-x: hidden; }
+body::after { content: ""; position: fixed; inset: -20%; z-index: -1; pointer-events: none; opacity: .55;
+  background:
+    radial-gradient(40% 35% at 20% 25%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 70%),
+    radial-gradient(35% 30% at 80% 70%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+  animation: drift 18s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: translate3d(-3%,-2%,0) scale(1); } to { transform: translate3d(3%,2%,0) scale(1.06); } }
+.card { transform-style: preserve-3d; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  will-change: transform; animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
+.grid > .card:nth-child(2) { animation-delay: .08s; } .grid > .card:nth-child(3) { animation-delay: .16s; } .grid > .card:nth-child(4) { animation-delay: .24s; }
+.card:hover { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 18px 40px -12px color-mix(in srgb, var(--accent) 45%, transparent); }
+@keyframes rise { from { opacity: 0; transform: translateY(18px) rotateX(12deg); } to { opacity: 1; transform: none; } }
+.kpi .value { background: linear-gradient(90deg, var(--fg), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+nav button { transition: transform .2s ease, box-shadow .2s ease; }
+nav button:hover { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) { body::after, .card { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
@@ -210,6 +228,33 @@ th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
   }
   tabs.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.tab); }); });
   document.querySelectorAll('[data-go]').forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.go); }); });
+
+  // 3D tilt on cards (skipped for reduced motion)
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.card').forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        c.style.transform = 'perspective(800px) rotateX(' + (-y * 6) + 'deg) rotateY(' + (x * 8) + 'deg) translateZ(4px)';
+      });
+      c.addEventListener('pointerleave', function () { c.style.transform = ''; });
+    });
+  }
+  // Count-up numbers on the KPI tiles
+  document.querySelectorAll('.kpi .value').forEach(function (el) {
+    var target = parseFloat(el.textContent.replace(/[^0-9.]/g, '')) || 0;
+    var prefix = el.textContent.match(/^\$/) ? '$' : '';
+    var decimals = el.textContent.indexOf('.') > -1 ? 2 : 0;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || target === 0) return;
+    var t0 = null;
+    function step(t) {
+      if (t0 === null) t0 = t;
+      var k = Math.min((t - t0) / 1200, 1);
+      el.textContent = prefix + (target * (1 - Math.pow(1 - k, 3))).toFixed(decimals);
+      if (k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
   var pick = document.getElementById('themePick');
   function applyTheme(v) {
     document.documentElement.setAttribute('data-theme', v);
