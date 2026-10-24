@@ -9,31 +9,20 @@
 <style>
 /* Layout: left rail of sections on wide screens, stacked on phones.
    Palette: GGFG brand — navy, dark, gold, green (buy only), cream. */
+/* 10 themes: set on <html data-theme="...">. Default is GGFG Navy. */
 :root {
-  --navy: #1A3A5C;
-  --dark: #0D1F2D;
-  --gold: #D4AF37;
-  --green: #2E7D5E;
-  --cream: #F9F5EF;
-  --bg: #0D1F2D;
-  --fg: #F9F5EF;
-  --panel: #14304A;
-  --line: #24435F;
-  --muted: #A9B8C6;
-  --accent: #D4AF37;
-  --gold-ink: #D4AF37;
-  color-scheme: dark;
+  --bg: #0D1F2D; --fg: #F9F5EF; --panel: #14304A; --line: #24435F; --muted: #A9B8C6; --accent: #D4AF37; --gold-ink: #D4AF37; color-scheme: dark;
 }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #F9F5EF; --fg: #0D1F2D; --panel: #FFFFFF; --line: #D9D2C3;
-    --muted: #5B6B7A; --accent: #1A3A5C; --gold-ink: #7A5F0E; color-scheme: light;
-  }
-}
-:root[data-theme="light"] {
-  --bg: #F9F5EF; --fg: #0D1F2D; --panel: #FFFFFF; --line: #D9D2C3;
-  --muted: #5B6B7A; --accent: #1A3A5C; --gold-ink: #7A5F0E; color-scheme: light;
-}
+:root[data-theme="ggfg-navy"] { --bg: #0D1F2D; --fg: #F9F5EF; --panel: #14304A; --line: #24435F; --muted: #A9B8C6; --accent: #D4AF37; --gold-ink: #D4AF37; color-scheme: dark; }
+:root[data-theme="cream-classic"] { --bg: #F9F5EF; --fg: #0D1F2D; --panel: #FFFFFF; --line: #D9D2C3; --muted: #5B6B7A; --accent: #1A3A5C; --gold-ink: #1A3A5C; color-scheme: light; }
+:root[data-theme="midnight-gold"] { --bg: #070B12; --fg: #F5E9C8; --panel: #101826; --line: #2A2415; --muted: #B8A77A; --accent: #D4AF37; --gold-ink: #D4AF37; color-scheme: dark; }
+:root[data-theme="emerald"] { --bg: #0B1F18; --fg: #EAF6EF; --panel: #11302A; --line: #1F4A3E; --muted: #9CC7B5; --accent: #2E7D5E; --gold-ink: #2E7D5E; color-scheme: dark; }
+:root[data-theme="royal-purple"] { --bg: #1A1027; --fg: #F4EEFA; --panel: #241838; --line: #3B2A5A; --muted: #B7A6D0; --accent: #B794F4; --gold-ink: #B794F4; color-scheme: dark; }
+:root[data-theme="ember"] { --bg: #1C100C; --fg: #FBEDE4; --panel: #2A1812; --line: #4A2A1E; --muted: #D6A891; --accent: #E0803A; --gold-ink: #E0803A; color-scheme: dark; }
+:root[data-theme="ocean"] { --bg: #0A1A2A; --fg: #E6F3FA; --panel: #12283D; --line: #1F3F5C; --muted: #93B8CF; --accent: #38BDF8; --gold-ink: #38BDF8; color-scheme: dark; }
+:root[data-theme="forest"] { --bg: #14190F; --fg: #EEF2E6; --panel: #1D2517; --line: #34412A; --muted: #B2BE9E; --accent: #A3B86B; --gold-ink: #A3B86B; color-scheme: dark; }
+:root[data-theme="slate-mono"] { --bg: #16181D; --fg: #F2F3F5; --panel: #1F222A; --line: #353A46; --muted: #9AA1AE; --accent: #E5E7EB; --gold-ink: #E5E7EB; color-scheme: dark; }
+:root[data-theme="rose-gold"] { --bg: #1E1416; --fg: #FBEFEF; --panel: #2A1C20; --line: #4A3038; --muted: #CFAEB3; --accent: #E0A99A; --gold-ink: #E0A99A; color-scheme: dark; }
 * { box-sizing: border-box; }
 body {
   margin: 0; background: var(--bg); color: var(--fg);
@@ -107,7 +96,7 @@ th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
     <div class="hero"><h1 class="hero-title">3G's Command Center</h1><p class="hero-sub">One place for stores, posting, money, and the academy.</p></div>
     
   </div>
-  <button class="btn ghost" type="button" id="themeBtn">Switch theme</button>
+  <label class="muted" for="themePick" style="display:flex;gap:8px;align-items:center">Theme <select id="themePick" style="font:inherit;padding:8px;border-radius:6px;background:var(--panel);color:var(--fg);border:1px solid var(--line)"><option value="ggfg-navy">GGFG Navy</option><option value="cream-classic">Cream Classic</option><option value="midnight-gold">Midnight Gold</option><option value="emerald">Emerald</option><option value="royal-purple">Royal Purple</option><option value="ember">Ember</option><option value="ocean">Ocean</option><option value="forest">Forest</option><option value="slate-mono">Slate Mono</option><option value="rose-gold">Rose Gold</option></select></label>
 </header>
 
 <div class="layout">
@@ -221,13 +210,16 @@ th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
   }
   tabs.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.tab); }); });
   document.querySelectorAll('[data-go]').forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.go); }); });
-  var btn = document.getElementById('themeBtn');
-  btn.addEventListener('click', function () {
-    var root = document.documentElement;
-    var dark = root.getAttribute('data-theme') === 'dark' ||
-      (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    root.setAttribute('data-theme', dark ? 'light' : 'dark');
-  });
+  var pick = document.getElementById('themePick');
+  function applyTheme(v) {
+    document.documentElement.setAttribute('data-theme', v);
+    if (pick) pick.value = v;
+    try { localStorage.setItem('cc-theme', v); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('cc-theme'); } catch (e) {}
+  applyTheme(saved || 'ggfg-navy');
+  if (pick) pick.addEventListener('change', function () { applyTheme(pick.value); });
 })();
 </script>
 </body>
