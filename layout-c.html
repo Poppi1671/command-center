@@ -57,16 +57,6 @@ ul.tight{margin:0;padding-left:18px}
   <div class="crest" aria-label="3G's crest"><img src="https://urbancanvasapparelco.com/assets/3gs-crest.png" alt="3G's crest" onerror="this.remove()">3G's</div>
   <h1>Command Center</h1>
   <p>Built By Faith · Excellence Is A Habit</p>
-  <nav class="tabs" aria-label="Sections">
-    <button type="button" data-go="home" aria-pressed="true">Home</button>
-    <button type="button" data-go="money" aria-pressed="false">Money</button>
-    <button type="button" data-go="social" aria-pressed="false">Social</button>
-    <button type="button" data-go="academy" aria-pressed="false">Academy</button>
-    <button type="button" data-go="stores" aria-pressed="false">Stores</button>
-    <button type="button" data-go="print" aria-pressed="false">Print</button>
-    <button type="button" data-go="art" aria-pressed="false">Art Studio</button>
-    <button type="button" data-go="library" aria-pressed="false">Library</button>
-  </nav>
 </header>
 
 <section id="home" class="home">
@@ -179,7 +169,6 @@ ul.tight{margin:0;padding-left:18px}
   var buttons = document.querySelectorAll('[data-go]');
   function show(id) {
     document.querySelectorAll('section[id]').forEach(function (s) { s.hidden = s.id !== id; });
-    document.querySelectorAll('.tabs [data-go]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.go === id)); });
     window.scrollTo(0, 0);
   }
   buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.go); }); });
