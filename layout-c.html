@@ -9,7 +9,7 @@
 <style>
 :root{--bg:#0D1F2D;--fg:#F9F5EF;--panel:#14304A;--line:#24435F;--muted:#A9B8C6;--accent:#D4AF37;--green:#2E7D5E}
 *{box-sizing:border-box}
-body{margin:0;background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 55%,transparent) 0%,color-mix(in srgb,var(--bg) 90%,transparent) 70%,var(--bg) 100%),url("assets/crown-cinematic.jpg") center top / cover no-repeat fixed,var(--bg);color:var(--fg);font:16px/1.5 "Source Sans 3",system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px;min-height:100vh}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 "Source Sans 3",system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px;min-height:100vh}
 h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;margin:0;text-wrap:balance}
 .top{text-align:center;margin-bottom:22px}
 .crest{width:min(260px,70vw);margin:0 auto 12px;color:var(--accent);font:700 22px "Cormorant Garamond",Georgia,serif;text-align:center}
@@ -62,9 +62,38 @@ body.dark-screen #bgveil{background:rgba(0,0,0,.45)}
 .controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
 .controls select,.controls label{font:inherit;font-size:14px;color:var(--fg)}
 .controls select{padding:7px 10px;border-radius:6px;background:var(--panel);color:var(--fg);border:1px solid var(--line)}
+/* ===== Full theme layer, ported from the old Command Center ===== */
+:root { --art: radial-gradient(40% 35% at 20% 25%, color-mix(in srgb, #D4AF37 35%, transparent), transparent 70%); }
+[data-theme="ggfg-navy"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #D4AF37 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #1A3A5C 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #D4AF37 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="cream-classic"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #1A3A5C 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #D4AF37 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #1A3A5C 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="midnight-gold"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #D4AF37 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #2A2415 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #D4AF37 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="emerald"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #2E7D5E 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #0B3B2B 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #2E7D5E 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="royal-purple"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #B794F4 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #3B1F6B 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #B794F4 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="ember"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #E0803A 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #6B2A12 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #E0803A 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="ocean"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #38BDF8 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #0B3A5C 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #38BDF8 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="forest"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #A3B86B 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #2E3D1C 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #A3B86B 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="slate-mono"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #E5E7EB 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #2A2F3A 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #E5E7EB 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="rose-gold"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #E0A99A 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #5A2E38 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #E0A99A 14%, transparent) 60% 61%, transparent 61%); }
+body { position: relative; overflow-x: hidden; }
+body::after { content: ""; position: fixed; inset: -20%; z-index: -1; pointer-events: none; opacity: .85;
+  background: var(--art); transform-origin: 50% 100%; transform: perspective(900px) rotateX(18deg) scale(1.15);
+  animation: drift 18s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: perspective(900px) rotateX(18deg) translate3d(-2%,-1%,0) scale(1.15); } to { transform: perspective(900px) rotateX(14deg) translate3d(2%,1%,0) scale(1.2); } }
+#cinema { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent), var(--bg) 92%), url("assets/crown-cinematic.jpg") center top / cover no-repeat; }
+html[data-theme="ember"] #cinema, html[data-theme="midnight-gold"] #cinema { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent), var(--bg) 92%), url("assets/torch-cinematic.jpg") center top / cover no-repeat; }
+html[data-theme="royal-purple"] #cinema, html[data-theme="rose-gold"] #cinema { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent), var(--bg) 92%), url("assets/scepter-cinematic.jpg") center top / cover no-repeat; }
+body.dark-screen #cinema { filter: brightness(.55) saturate(1.1); }
+body.dark-screen::after { opacity: .5; }
+.top h1 { background: linear-gradient(100deg, var(--fg) 0%, var(--accent) 40%, var(--fg) 60%, var(--accent) 100%); background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 4s linear infinite; }
+@keyframes shine { from { background-position: 0% 50%; } to { background-position: 250% 50%; } }
+.tile:hover, .tile:focus-visible { box-shadow: 0 0 0 1px var(--accent), 0 18px 40px -12px color-mix(in srgb, var(--accent) 45%, transparent); }
+@media (prefers-reduced-motion: reduce) { body::after, .top h1 { animation: none !important; } }
 </style>
 </head>
 <body>
+<div id="cinema" aria-hidden="true"></div>
 <div id="bgveil" aria-hidden="true"></div>
 
 <header class="top">
@@ -179,7 +208,7 @@ body.dark-screen #bgveil{background:rgba(0,0,0,.45)}
     <ul class="tight" style="margin-top:8px">
       <li><a href="library/3GS-Command-Center-Library/CATALOG.md">CATALOG.md</a>: the index of everything</li>
       <li><a href="library/3GS-Command-Center-Library/command-center-layout-C-current.html">Command Center, Layout C (current)</a></li>
-      <li><a href="library/3GS-Command-Center-Library/command-center-v1-dashboard.html">Command Center, v1 dashboard (unchanged)</a></li>
+      <li><a href="library/3GS-Command-Center-Library/command-center-v1-dashboard.html">Old Version (Dashboard)</a></li>
       <li><a href="library/3GS-Command-Center-Library/layouts-explored/layout-a-sidebar.html">Layout A, sidebar</a></li>
       <li><a href="library/3GS-Command-Center-Library/layouts-explored/layout-b-topbar.html">Layout B, top bar</a></li>
       <li><a href="library/3GS-Command-Center-Library/layouts-explored/layout-c-cards.html">Layout C, first draft</a></li>
