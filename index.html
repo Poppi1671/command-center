@@ -254,10 +254,44 @@ html[data-theme="royal-purple"] #cinema, html[data-theme="rose-gold"] #cinema { 
 
     <section class="panel" id="stores">
       <h2>Stores &amp; Orders</h2>
+      <p class="muted">Every store, what it sells, and where its orders go. Changes apply to all stores in the same pass.</p>
+
       <div class="grid">
-        <div class="card"><h3>Stores</h3><ul class="tight"><li>Urban Canvas Co.</li><li>Say What You Want</li><li>Gods of Drip</li><li>Tees R 4 Us</li></ul></div>
-        <div class="card"><h3>Orders</h3><p class="muted">All store orders in one list.</p></div>
+        <div class="card kpi"><div class="label">Stores</div><div class="value">6</div><div class="muted">Listed below</div></div>
+        <div class="card kpi"><div class="label">Open orders</div><div class="value">0</div><div class="muted">Pull from Orders</div></div>
+        <div class="card kpi"><div class="label">To print</div><div class="value">0</div><div class="muted">Print queue</div></div>
       </div>
+
+      <h3 style="margin-top:18px">Stores</h3>
+      <div class="table-wrap card" style="margin-top:8px">
+        <table>
+          <thead><tr><th>Store</th><th>Sells</th><th>Payments</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Urban Canvas Co.</td><td>Tees, hoodies, hats, totes, mugs, tumblers</td><td>Stripe</td><td><span class="pill todo">Verify live</span></td></tr>
+            <tr><td>Say What You Want Custom Tees</td><td>Custom tees</td><td>Stripe</td><td><span class="pill todo">Verify live</span></td></tr>
+            <tr><td>Gods of Drip</td><td>Character art tees</td><td>Stripe</td><td><span class="pill todo">Verify live</span></td></tr>
+            <tr><td>Tees R 4 Us</td><td>Tees</td><td>Stripe</td><td><span class="pill todo">Verify live</span></td></tr>
+            <tr><td>3G's Built By Faith</td><td>Master brand apparel (checkout name)</td><td>Shopify</td><td><span class="pill todo">Verify live</span></td></tr>
+            <tr><td>DigiVault Creatives</td><td>Digital products: ebooks, courses, kits</td><td>Stripe</td><td><span class="pill todo">Verify live</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:18px">Store tools</h3>
+      <div class="grid" style="margin-top:8px">
+        <div class="card"><h3>Orders</h3><p class="muted">All orders from every store in one list, with status and tracking.</p><span class="pill todo">Connect Stripe</span></div>
+        <div class="card"><h3>Store Builder</h3><p class="muted">Build and update product pages. Approved mockups use real product photos only.</p><span class="pill todo">Review</span></div>
+        <div class="card"><h3>Products &amp; pricing</h3><p class="muted">Title, keywords, price, margin, bundle, and upsell for every product.</p><span class="pill todo">Review</span></div>
+      </div>
+
+      <h3 style="margin-top:18px">Store standards</h3>
+      <div class="card" style="margin-top:8px"><ul class="tight">
+        <li>Only buy buttons (add to cart, checkout, buy) are green. Every other button is brand gold.</li>
+        <li>Size picker, quantity picker, and Add to Cart stack on the right, with trust seals under the button.</li>
+        <li>No empty space on one-page sites.</li>
+        <li>Any change goes to every store in the same pass, and the Command Center updates with it.</li>
+        <li>Nothing goes live until you approve the screenshots.</li>
+      </ul></div>
     </section>
 
     <section class="panel" id="print">
