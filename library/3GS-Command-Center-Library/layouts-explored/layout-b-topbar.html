@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Layout B: Top Bar</title>
+<style>:root{--bg:#0D1F2D;--fg:#F9F5EF;--panel:#14304A;--line:#24435F;--muted:#A9B8C6;--accent:#D4AF37}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;padding:0 0 40px}
+header{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);border-bottom:2px solid var(--accent);padding:20px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.brand{font:700 30px Georgia,serif;color:var(--accent)}
+select{font:inherit;padding:9px 12px;border-radius:6px;background:var(--panel);color:var(--fg);border:1px solid var(--line)}
+.tabs{display:flex;gap:18px;padding:12px 22px;border-bottom:1px solid var(--line);overflow-x:auto}.tabs span{color:var(--muted);white-space:nowrap}.tabs span.on{color:var(--accent);font-weight:700}
+section{padding:22px}.hero{font:700 36px Georgia,serif;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 18px}
+.row{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px}.card h3{margin:0 0 6px;font:700 20px Georgia,serif;color:var(--accent)}</style></head>
+<body><header><div class="brand">3G's Command Center</div><select aria-label="Go to section"><option>Dashboard</option><option>Money</option><option>Social</option><option>Academy</option><option>Stores</option><option>Print</option><option>Art Studio</option><option>Library</option></select></header>
+<div class="tabs"><span class="on">Dashboard</span><span>Money</span><span>Social</span><span>Academy</span><span>Stores</span><span>Print</span><span>Art Studio</span><span>Library</span></div>
+<section><div class="hero">Good evening, Robert.</div><p class="sub">Here is where everything stands today.</p><div class="row"><div class="card"><h3>Money</h3><p class="sub">Store profit, payouts, personal tools.</p></div><div class="card"><h3>Social</h3><p class="sub">Post Machine, accounts, ambassadors.</p></div><div class="card"><h3>Academy</h3><p class="sub">Courses, products, academy social.</p></div></div></section></body></html>

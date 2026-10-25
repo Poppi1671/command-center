@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Layout A: Sidebar</title>
+<style>:root{--bg:#0D1F2D;--fg:#F9F5EF;--panel:#14304A;--line:#24435F;--muted:#A9B8C6;--accent:#D4AF37}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+aside{border-right:1px solid var(--line);padding:20px 14px;background:color-mix(in srgb,var(--panel) 60%,transparent)}
+.brand{font:700 20px Georgia,serif;color:var(--accent);margin-bottom:18px}
+aside a{display:block;padding:9px 12px;border-radius:6px;color:var(--fg);text-decoration:none;margin-bottom:4px}
+aside a.on{background:var(--panel);box-shadow:inset 3px 0 var(--accent)}
+main{padding:22px}h1{font:700 30px Georgia,serif;color:var(--accent);margin:0 0 14px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}
+.big{font-size:28px;font-weight:700;color:var(--accent)}.muted{color:var(--muted);font-size:13px}
+@media(max-width:720px){body{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line)}}</style></head>
+<body><aside><div class="brand">3G's Command Center</div><a class="on" href="#">Dashboard</a><a href="#">Money</a><a href="#">Social</a><a href="#">Academy</a><a href="#">Stores</a><a href="#">Print</a><a href="#">Art Studio</a><a href="#">Library</a></aside>
+<main><h1>Dashboard</h1><div class="grid"><div class="card"><div class="muted">Sales today</div><div class="big">$0.00</div></div><div class="card"><div class="muted">Open orders</div><div class="big">0</div></div><div class="card"><div class="muted">Posts scheduled</div><div class="big">0</div></div><div class="card"><div class="muted">Academy students</div><div class="big">0</div></div></div></main></body></html>
