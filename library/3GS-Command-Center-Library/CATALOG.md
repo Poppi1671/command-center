@@ -13,6 +13,10 @@ One folder for everything built for the Command Center and the stores.
 - assets/crown-cinematic.jpg, torch-cinematic.jpg, scepter-cinematic.jpg: backdrops for the themes.
 - assets/preview-home-phone.png and preview-home-desktop.png: screenshots of Layout C.
 
+## Courses, ebooks and written work
+- courses-and-ebooks-compiled.md: one file with the complete AI Income Blueprint Accelerator (6 modules, lessons, worksheets, quizzes, case studies, journal prompts, 40-question final exam and answer key), The Blueprint Model (product architecture), the $297 course blueprint (10-part stack and the 7 courses), and the free ebook funnel and $6.99 minis.
+- Not yet in the library: the other project docs (store plans, social posts, status logs) and anything on your computer. This session is not linked to your computer, so the hard drive has not been read.
+
 ## Notes and repo
 - command-center-NOTES.md: where the live desk and crest live, open items.
 - README-repo.md: repo readme.
