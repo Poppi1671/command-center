@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>3G's Command Center</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#0D1F2D;--fg:#F9F5EF;--panel:#14304A;--line:#24435F;--muted:#A9B8C6;--accent:#D4AF37;--green:#2E7D5E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 "Source Sans 3",system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px;min-height:100vh}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;margin:0;text-wrap:balance}
+.top{text-align:center;margin-bottom:22px}
+.crest{width:min(260px,70vw);margin:0 auto 12px;color:var(--accent);font:700 22px "Cormorant Garamond",Georgia,serif;text-align:center}
+.crest img{width:100%;height:auto;display:block}
+.top h1{font-size:40px;color:var(--accent)}
+.top p{color:var(--muted);margin:6px 0 0}
+.tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.tabs button{font:inherit;font-size:14px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.tabs button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.home{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));max-width:1000px;margin:0 auto}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;cursor:pointer;text-align:left;color:var(--fg);font:inherit;transition:transform .2s,border-color .2s,box-shadow .2s;animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+.tile:hover,.tile:focus-visible{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--accent) 45%,transparent);outline:none}
+.tile h2{font-size:24px;color:var(--accent);margin-bottom:6px}
+.tile p{color:var(--muted);margin:0;font-size:14px}
+.tile .pill{display:inline-block;margin-top:10px;font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--accent);color:var(--accent)}
+.view{max-width:1000px;margin:0 auto}
+.back{font:inherit;background:transparent;border:1px solid var(--line);color:var(--fg);padding:8px 14px;border-radius:6px;cursor:pointer;margin-bottom:16px}
+.back:focus-visible{outline:3px solid var(--accent)}
+.panel-h{font-size:34px;color:var(--accent);margin-bottom:6px}
+.sub{color:var(--muted);margin:0 0 16px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{font-size:20px;color:var(--accent);margin-bottom:6px}
+.kpi .l{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.kpi .v{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent)}
+.pill{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.pill.todo{border-color:var(--accent);color:var(--accent)}
+.pill.ok{border-color:var(--green);color:#7fd1ad}
+.btn{font:inherit;font-weight:700;padding:10px 14px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:#0D1F2D;cursor:pointer}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+ul.tight{margin:0;padding-left:18px}
+.banner{border:1px solid var(--accent);border-radius:8px;padding:10px 14px;text-align:center;margin:0 auto 18px;max-width:1000px;color:var(--fg)}
+[hidden]{display:none!important}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.tile{animation:none}.tile:hover{transform:none}}
+:root[data-theme="ggfg-navy"]{--bg:#0D1F2D;--fg:#F9F5EF;--panel:#14304A;--line:#24435F;--muted:#A9B8C6;--accent:#D4AF37;color-scheme:dark}
+:root[data-theme="cream-classic"]{--bg:#F9F5EF;--fg:#0D1F2D;--panel:#FFFFFF;--line:#D9D2C3;--muted:#5B6B7A;--accent:#1A3A5C;color-scheme:light}
+:root[data-theme="midnight-gold"]{--bg:#070B12;--fg:#F5E9C8;--panel:#101826;--line:#2A2415;--muted:#B8A77A;--accent:#D4AF37;color-scheme:dark}
+:root[data-theme="emerald"]{--bg:#0B1F18;--fg:#EAF6EF;--panel:#11302A;--line:#1F4A3E;--muted:#9CC7B5;--accent:#2E7D5E;color-scheme:dark}
+:root[data-theme="royal-purple"]{--bg:#1A1027;--fg:#F4EEFA;--panel:#241838;--line:#3B2A5A;--muted:#B7A6D0;--accent:#B794F4;color-scheme:dark}
+:root[data-theme="ember"]{--bg:#1C100C;--fg:#FBEDE4;--panel:#2A1812;--line:#4A2A1E;--muted:#D6A891;--accent:#E0803A;color-scheme:dark}
+:root[data-theme="ocean"]{--bg:#0A1A2A;--fg:#E6F3FA;--panel:#12283D;--line:#1F3F5C;--muted:#93B8CF;--accent:#38BDF8;color-scheme:dark}
+:root[data-theme="forest"]{--bg:#14190F;--fg:#EEF2E6;--panel:#1D2517;--line:#34412A;--muted:#B2BE9E;--accent:#A3B86B;color-scheme:dark}
+:root[data-theme="slate-mono"]{--bg:#16181D;--fg:#F2F3F5;--panel:#1F222A;--line:#353A46;--muted:#9AA1AE;--accent:#E5E7EB;color-scheme:dark}
+:root[data-theme="rose-gold"]{--bg:#1E1416;--fg:#FBEFEF;--panel:#2A1C20;--line:#4A3038;--muted:#CFAEB3;--accent:#E0A99A;color-scheme:dark}
+body.dark-screen #bgveil{background:rgba(0,0,0,.45)}
+#bgveil{position:fixed;inset:0;pointer-events:none;z-index:-1;background:transparent}
+.controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.controls select,.controls label{font:inherit;font-size:14px;color:var(--fg)}
+.controls select{padding:7px 10px;border-radius:6px;background:var(--panel);color:var(--fg);border:1px solid var(--line)}
+/* ===== Full theme layer, ported from the old Command Center ===== */
+:root { --art: radial-gradient(40% 35% at 20% 25%, color-mix(in srgb, #D4AF37 35%, transparent), transparent 70%); }
+[data-theme="ggfg-navy"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #D4AF37 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #1A3A5C 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #D4AF37 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="cream-classic"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #1A3A5C 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #D4AF37 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #1A3A5C 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="midnight-gold"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #D4AF37 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #2A2415 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #D4AF37 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="emerald"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #2E7D5E 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #0B3B2B 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #2E7D5E 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="royal-purple"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #B794F4 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #3B1F6B 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #B794F4 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="ember"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #E0803A 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #6B2A12 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #E0803A 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="ocean"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #38BDF8 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #0B3A5C 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #38BDF8 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="forest"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #A3B86B 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #2E3D1C 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #A3B86B 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="slate-mono"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #E5E7EB 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #2A2F3A 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #E5E7EB 14%, transparent) 60% 61%, transparent 61%); }
+[data-theme="rose-gold"] { --art: radial-gradient(38% 34% at 18% 22%, color-mix(in srgb, #E0A99A 45%, transparent), transparent 70%), radial-gradient(34% 30% at 82% 74%, color-mix(in srgb, #5A2E38 80%, transparent), transparent 72%), linear-gradient(160deg, transparent 0 60%, color-mix(in srgb, #E0A99A 14%, transparent) 60% 61%, transparent 61%); }
+body { position: relative; overflow-x: hidden; }
+body::after { content: ""; position: fixed; inset: -20%; z-index: -1; pointer-events: none; opacity: .85;
+  background: var(--art); transform-origin: 50% 100%; transform: perspective(900px) rotateX(18deg) scale(1.15);
+  animation: drift 18s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: perspective(900px) rotateX(18deg) translate3d(-2%,-1%,0) scale(1.15); } to { transform: perspective(900px) rotateX(14deg) translate3d(2%,1%,0) scale(1.2); } }
+#cinema { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent), var(--bg) 92%), url("assets/crown-cinematic.jpg") center top / cover no-repeat; }
+html[data-theme="ember"] #cinema, html[data-theme="midnight-gold"] #cinema { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent), var(--bg) 92%), url("assets/torch-cinematic.jpg") center top / cover no-repeat; }
+html[data-theme="royal-purple"] #cinema, html[data-theme="rose-gold"] #cinema { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent), var(--bg) 92%), url("assets/scepter-cinematic.jpg") center top / cover no-repeat; }
+body.dark-screen #cinema { filter: brightness(.55) saturate(1.1); }
+body.dark-screen::after { opacity: .5; }
+.top h1 { background: linear-gradient(100deg, var(--fg) 0%, var(--accent) 40%, var(--fg) 60%, var(--accent) 100%); background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 4s linear infinite; }
+@keyframes shine { from { background-position: 0% 50%; } to { background-position: 250% 50%; } }
+.tile:hover, .tile:focus-visible { box-shadow: 0 0 0 1px var(--accent), 0 18px 40px -12px color-mix(in srgb, var(--accent) 45%, transparent); }
+@media (prefers-reduced-motion: reduce) { body::after, .top h1 { animation: none !important; } }
+</style>
+</head>
+<body>
+<div id="cinema" aria-hidden="true"></div>
+<div id="bgveil" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="crest" aria-label="3G's crest"><img src="assets/3gs-crest-v2-no-apparel.png" alt="3G's crest" onerror="this.parentNode.textContent='3G\'s'"></div>
+  <h1>Command Center</h1>
+  <p>Built By Faith · Excellence Is A Habit</p>
+  <div class="controls"><label>Theme <select id="themePick" aria-label="Theme"><option value="ggfg-navy">GGFG Navy</option><option value="cream-classic">Cream Classic</option><option value="midnight-gold">Midnight Gold</option><option value="emerald">Emerald</option><option value="royal-purple">Royal Purple</option><option value="ember">Ember</option><option value="ocean">Ocean</option><option value="forest">Forest</option><option value="slate-mono">Slate Mono</option><option value="rose-gold">Rose Gold</option></select></label><label><input type="checkbox" id="darkScreen"> Dark screen</label></div>
+</header>
+
+<section id="home" class="home">
+  <button class="tile" type="button" data-go="money"><h2>Money</h2><p>Store profit, payouts, and personal money tools, kept separate.</p><span class="pill todo">Set up</span></button>
+  <button class="tile" type="button" data-go="social"><h2>Social</h2><p>Post Machine, accounts, ambassadors, and the follow routine.</p><span class="pill todo">Pending approval</span></button>
+  <button class="tile" type="button" data-go="academy"><h2>Blueprint Academy</h2><p>Courses, workbooks, prompt packs, and memberships.</p><span class="pill todo">Review</span></button>
+  <button class="tile" type="button" data-go="stores"><h2>Stores</h2><p>All six stores, what each sells, and the rules for every change.</p><span class="pill todo">Pending approval</span></button>
+  <button class="tile" type="button" data-go="print"><h2>Print &amp; Ship</h2><p>Print queue, 300 DPI print files, and labels.</p><span class="pill todo">Review</span></button>
+  <button class="tile" type="button" data-go="art"><h2>Art Studio</h2><p>Designs, mockups from real product photos, and short ads.</p><span class="pill todo">Review</span></button>
+  <button class="tile" type="button" data-go="library"><h2>Library</h2><p>Everything we built, post packs, plans, and handoffs.</p><span class="pill">Open</span></button>
+</section>
+
+<section id="money" class="view" hidden>
+  <button class="back" type="button" data-go="home">← Home</button>
+  <h2 class="panel-h">Money</h2><p class="sub">All finances live here. Personal money stays separate from store profit.</p>
+  <div class="grid">
+    <div class="card kpi"><div class="l">Sales today</div><div class="v">$0.00</div><div class="sub">Connect Stripe to fill</div></div>
+    <div class="card"><h3>Store profit</h3><p class="sub">Sales, cost, and margin by store.</p><span class="pill todo">Set up</span></div>
+    <div class="card"><h3>Payouts</h3><p class="sub">Stripe deposits and fees.</p><span class="pill todo">Connect Stripe</span></div>
+    <div class="card"><h3>Personal Money</h3><p class="sub">Credit rebuild plan and trading tools.</p><span class="pill todo">Install from plan</span></div>
+  </div>
+</section>
+
+<section id="social" class="view" hidden>
+  <button class="back" type="button" data-go="home">← Home</button>
+  <h2 class="panel-h">Social</h2><p class="sub">Organic only. Every post is shown to you before it goes live.</p>
+  <div class="grid">
+    <div class="card"><h3>Post Machine</h3><p class="sub">Generate, review, and schedule posts for every Page.</p><span class="pill todo">60 posts ready · Nov 1–7</span><p class="sub" style="margin-top:10px">Schedule: 9 AM · 1 PM · 7 PM ET. Ambassador posts: 8 AM · 12 PM · 5 PM · 8 PM.</p></div>
+    <div class="card"><h3>Daily follow routine</h3><p class="sub">25–30 follows a day, spread out, only like-minded accounts with 10K+ followers, on every account.</p><span class="pill todo">Not started</span></div>
+    <div class="card"><h3>Ambassadors</h3><p class="sub">Tiers and commission approved. Recruit and share pages.</p><span class="pill todo">Recruiting plan</span></div>
+  </div>
+  <h3 style="margin:20px 0 8px">Accounts</h3>
+  <div class="table-wrap card"><table>
+    <thead><tr><th>Account</th><th>Platform</th><th>Brand</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Say What You Want Custom Tees</td><td>Facebook Page</td><td>Say What You Want</td><td><span class="pill ok">Page live</span></td></tr>
+      <tr><td>saywhatyouwantcustomtees</td><td>Instagram</td><td>Say What You Want</td><td><span class="pill todo">Connect to Page</span></td></tr>
+      <tr><td>Urban Canvas Co.</td><td>Facebook Page</td><td>Urban Canvas</td><td><span class="pill ok">Page live</span></td></tr>
+      <tr><td>threadedtruthsapparelco</td><td>Instagram</td><td>Urban Canvas</td><td><span class="pill todo">Connect to Page</span></td></tr>
+      <tr><td>DigiVault Creatives</td><td>Facebook Page</td><td>DigiVault</td><td><span class="pill ok">Page live</span></td></tr>
+      <tr><td>digivaultcreatives</td><td>Instagram</td><td>DigiVault</td><td><span class="pill todo">Connect to Page</span></td></tr>
+      <tr><td>Blueprint Academy</td><td>Facebook Page</td><td>Blueprint Academy</td><td><span class="pill todo">Create Page</span></td></tr>
+      <tr><td>Meta account</td><td>Meta</td><td>All</td><td><span class="pill todo">Review restriction</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="academy" class="view" hidden>
+  <button class="back" type="button" data-go="home">← Home</button>
+  <h2 class="panel-h">Blueprint Academy</h2><p class="sub">Courses, workbooks, prompt packs, memberships, and certification.</p>
+  <div class="grid">
+    <div class="card"><h3>Courses</h3><p class="sub">Blueprint Accelerators and the AI Mastery Blueprint.</p><span class="pill todo">Review</span></div>
+    <div class="card"><h3>Products</h3><p class="sub">Workbooks, templates, and bundles.</p><span class="pill todo">Review</span></div>
+    <div class="card"><h3>Academy social</h3><p class="sub">Academy Page posts.</p><span class="pill todo">Create Page</span></div>
+  </div>
+</section>
+
+<section id="stores" class="view" hidden>
+  <button class="back" type="button" data-go="home">← Home</button>
+  <h2 class="panel-h">Stores</h2><p class="sub">Changes apply to all stores in the same pass.</p>
+  <div class="table-wrap card"><table>
+    <thead><tr><th>Store</th><th>Sells</th><th>Payments</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Urban Canvas Co.</td><td>Tees, hoodies, hats, totes, mugs, tumblers</td><td>Stripe</td><td><span class="pill todo">Pending approval</span></td></tr>
+      <tr><td>Say What You Want Custom Tees</td><td>Custom tees</td><td>Stripe</td><td><span class="pill todo">Pending approval</span></td></tr>
+      <tr><td>Gods of Drip</td><td>Character art tees</td><td>Stripe</td><td><span class="pill todo">Pending approval</span></td></tr>
+      <tr><td>Tees R 4 Us</td><td>Tees</td><td>Stripe</td><td><span class="pill todo">Pending approval</span></td></tr>
+      <tr><td>3G's Built By Faith</td><td>Master brand apparel</td><td>Shopify</td><td><span class="pill todo">Pending approval</span></td></tr>
+      <tr><td>DigiVault Creatives</td><td>Digital products</td><td>Stripe</td><td><span class="pill todo">Pending approval</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="card" style="margin-top:14px"><ul class="tight">
+    <li>Only buy buttons (add to cart, checkout, buy) are green. Every other button is brand gold.</li>
+    <li>Size picker, quantity picker, and Add to Cart stack on the right, with trust seals under the button.</li>
+    <li>No empty space on one-page sites.</li>
+    <li>Nothing goes live until you approve the screenshots.</li>
+  </ul></div>
+</section>
+
+<section id="print" class="view" hidden>
+  <button class="back" type="button" data-go="home">← Home</button>
+  <h2 class="panel-h">Print &amp; Ship</h2><p class="sub">From order to print to shipping.</p>
+  <div class="grid">
+    <div class="card kpi"><div class="l">To print</div><div class="v">0</div><div class="sub">Print queue</div></div>
+    <div class="card"><h3>Print files</h3><p class="sub">300 DPI transparent files.</p></div>
+    <div class="card"><h3>Ship</h3><p class="sub">Labels and tracking.</p></div>
+  </div>
+</section>
+
+<section id="art" class="view" hidden>
+  <button class="back" type="button" data-go="home">← Home</button>
+  <h2 class="panel-h">Art Studio</h2><p class="sub">Mockups use real product photos only.</p>
+  <div class="grid">
+    <div class="card"><h3>Designs</h3><p class="sub">Shirt art and mockups.</p></div>
+    <div class="card"><h3>Short ads</h3><p class="sub">15-second ads with captions. Export needs your approval.</p></div>
+  </div>
+</section>
+
+<section id="library" class="view" hidden>
+  <button class="back" type="button" data-go="home">← Home</button>
+  <h2 class="panel-h">Library</h2><p class="sub">Everything we built for the Command Center and the stores, in one folder.</p>
+  <div class="card">
+    <h3>📁 3GS Command Center Library</h3>
+    <p class="sub">Open the catalog first. It lists every file and where the store files live.</p>
+    <ul class="tight" style="margin-top:8px">
+      <li><a href="library/3GS-Command-Center-Library/CATALOG.md">CATALOG.md</a>: the index of everything</li>
+      <li><a href="library/3GS-Command-Center-Library/command-center-layout-C-current.html">Command Center, Layout C (current)</a></li>
+      <li><a href="library/3GS-Command-Center-Library/command-center-v1-dashboard.html">Old Version (Dashboard)</a></li>
+      <li><a href="library/3GS-Command-Center-Library/layouts-explored/layout-a-sidebar.html">Layout A, sidebar</a></li>
+      <li><a href="library/3GS-Command-Center-Library/layouts-explored/layout-b-topbar.html">Layout B, top bar</a></li>
+      <li><a href="library/3GS-Command-Center-Library/layouts-explored/layout-c-cards.html">Layout C, first draft</a></li>
+      <li><a href="library/3GS-Command-Center-Library/assets/3gs-crest-v2-no-apparel.png">3G's crest, version 2 (current)</a></li>
+      <li><a href="library/3GS-Command-Center-Library/assets/3gs-crest-v1-with-apparel.webp">3G's crest, version 1 (with APPAREL CO)</a></li>
+      <li><a href="library/3GS-Command-Center-Library/courses-and-ebooks-compiled.md">Courses, ebooks and written work (one file)</a>: AI Income Accelerator, Blueprint Model, $297 course blueprint, free ebook funnel</li>
+      <li><a href="library/3GS-Command-Center-Library/command-center-NOTES.md">Command Center notes and open items</a></li>
+      <li><a href="library/3GS-Command-Center-Library/assets/preview-home-desktop.png">Preview: desktop</a> · <a href="library/3GS-Command-Center-Library/assets/preview-home-phone.png">Preview: phone</a></li>
+    </ul>
+  </div>
+  <div class="grid" style="margin-top:12px">
+    <div class="card"><h3>Stores</h3><p class="sub">Store designs and the sign-in sheet live in Canva. The catalog lists them.</p></div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var buttons = document.querySelectorAll('[data-go]');
+  function show(id) {
+    document.querySelectorAll('section[id]').forEach(function (s) { s.hidden = s.id !== id; });
+    window.scrollTo(0, 0);
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.go); }); });
+
+  var root = document.documentElement, pick = document.getElementById('themePick'), dk = document.getElementById('darkScreen');
+  function applyTheme(v) { root.setAttribute('data-theme', v); if (pick) pick.value = v; try { localStorage.setItem('cc-theme', v); } catch (e) {} }
+  var saved = null; try { saved = localStorage.getItem('cc-theme'); } catch (e) {}
+  applyTheme(saved || 'ggfg-navy');
+  if (pick) pick.addEventListener('change', function () { applyTheme(pick.value); });
+  if (dk) {
+    var on = false; try { on = localStorage.getItem('cc-dark') === '1'; } catch (e) {}
+    dk.checked = on; document.body.classList.toggle('dark-screen', on);
+    dk.addEventListener('change', function () { document.body.classList.toggle('dark-screen', dk.checked); try { localStorage.setItem('cc-dark', dk.checked ? '1' : '0'); } catch (e) {} });
+  }
+  show('home');
+})();
+</script>
+</body>
+</html>
