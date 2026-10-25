@@ -111,7 +111,12 @@
         '#ttThemeUI{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap;font:600 13px system-ui}' +
         '#ttThemeUI select{font:600 13px system-ui;border-radius:999px;padding:6px 10px;border:1px solid var(--line);background:var(--card);color:var(--ink);max-width:170px}' +
         '#ttThemeUI label{display:flex;gap:4px;align-items:center;cursor:pointer}' +
-        '@media (prefers-reduced-motion:reduce){body::after{animation:none!important}}';
+        '.card{transform-style:preserve-3d;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:ttRise .7s cubic-bezier(.2,.8,.2,1) both}' +
+        '.card:hover{transform:perspective(900px) rotateX(3deg) rotateY(-2deg) translateY(-3px);border-color:var(--gold);box-shadow:0 18px 40px -14px color-mix(in srgb,var(--gold) 45%,transparent)}' +
+        '@keyframes ttRise{from{opacity:0;transform:translateY(18px) rotateX(12deg)}to{opacity:1;transform:none}}' +
+        '.grid>.card:nth-child(2){animation-delay:.08s}.grid>.card:nth-child(3){animation-delay:.16s}.grid>.card:nth-child(4){animation-delay:.24s}' +
+        'header .g3-logo{animation:ttFloat 6s ease-in-out infinite}@keyframes ttFloat{0%,100%{transform:translateY(0) rotateY(-6deg)}50%{transform:translateY(-4px) rotateY(6deg)}}' +
+        '@media (prefers-reduced-motion:reduce){body::after,.card,header .g3-logo{animation:none!important;transition:none!important}}';
       var st = document.createElement('style'); st.id = 'ttThemeCss'; st.textContent = css; document.head.appendChild(st);
 
       if (!document.getElementById('cinema')) {
