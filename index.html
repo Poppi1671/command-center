@@ -149,17 +149,12 @@ html[data-theme="royal-purple"] #cinema, html[data-theme="rose-gold"] #cinema { 
 .site-header .brand-name { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; font-weight: 700; color: var(--accent); letter-spacing: .02em; }
 .site-header .brand-name small { display: block; font: 12px/1.2 "Source Sans 3", system-ui, sans-serif; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
 
-/* Top navigation */
-.topnav { display: flex; gap: 6px; flex-wrap: wrap; width: 100%; }
-.topnav button { font: inherit; font-size: 14px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; }
-.topnav button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); font-weight: 700; }
-.topnav button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 </style>
 </head>
 <body>
 <canvas id="cinema" aria-hidden="true"></canvas>
 
-<header class="site-header"><div class="brand-name">3G's Command Center<small>Built By Faith · Excellence Is A Habit</small></div><label class="muted" for="themePick" style="display:flex;gap:8px;align-items:center">Theme <select id="themePick" style="font:inherit;padding:8px;border-radius:6px;background:var(--panel);color:var(--fg);border:1px solid var(--line)"><option value="ggfg-navy">GGFG Navy</option><option value="cream-classic">Cream Classic</option><option value="midnight-gold">Midnight Gold</option><option value="emerald">Emerald</option><option value="royal-purple">Royal Purple</option><option value="ember">Ember</option><option value="ocean">Ocean</option><option value="forest">Forest</option><option value="slate-mono">Slate Mono</option><option value="rose-gold">Rose Gold</option></select></label><nav class="topnav" aria-label="Sections"><button type="button" data-tab="dashboard" aria-pressed="true">Dashboard</button><button type="button" data-tab="money" aria-pressed="false">Money</button><button type="button" data-tab="social" aria-pressed="false">Social</button><button type="button" data-tab="academy" aria-pressed="false">Academy</button><button type="button" data-tab="stores" aria-pressed="false">Stores</button><button type="button" data-tab="print" aria-pressed="false">Print</button><button type="button" data-tab="art" aria-pressed="false">Art Studio</button><button type="button" data-tab="library" aria-pressed="false">Library</button></nav></header>
+<header class="site-header"><div class="brand-name">3G's Command Center<small>Built By Faith · Excellence Is A Habit</small></div><label class="muted" for="themePick" style="display:flex;gap:8px;align-items:center">Theme <select id="themePick" style="font:inherit;padding:8px;border-radius:6px;background:var(--panel);color:var(--fg);border:1px solid var(--line)"><option value="ggfg-navy">GGFG Navy</option><option value="cream-classic">Cream Classic</option><option value="midnight-gold">Midnight Gold</option><option value="emerald">Emerald</option><option value="royal-purple">Royal Purple</option><option value="ember">Ember</option><option value="ocean">Ocean</option><option value="forest">Forest</option><option value="slate-mono">Slate Mono</option><option value="rose-gold">Rose Gold</option></select></label><label style="display:flex;gap:8px;align-items:center" class="muted">Go to <select id="sectionPick" style="font:inherit;padding:8px 10px;border-radius:6px;background:var(--panel);color:var(--fg);border:1px solid var(--line)"><option value="dashboard">Dashboard</option><option value="money">Money</option><option value="social">Social</option><option value="academy">Academy</option><option value="stores">Stores</option><option value="print">Print</option><option value="art">Art Studio</option><option value="library">Library</option></select></label></header>
 
 <div class="card" style="margin-bottom:16px;border-color:var(--gold);text-align:center"><strong>Pending your approval.</strong> Nothing in this preview is live until you approve it.</div>
 <div class="layout">
@@ -339,6 +334,8 @@ html[data-theme="royal-purple"] #cinema, html[data-theme="rose-gold"] #cinema { 
     tabs.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.tab === id)); });
   }
   tabs.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.tab); }); });
+  var sec = document.getElementById('sectionPick');
+  if (sec) sec.addEventListener('change', function () { show(sec.value); });
   document.querySelectorAll('[data-go]').forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.go); }); });
 
   // 3D tilt on cards (skipped for reduced motion)
