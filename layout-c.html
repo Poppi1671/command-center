@@ -9,7 +9,7 @@
 <style>
 :root{--bg:#0D1F2D;--fg:#F9F5EF;--panel:#14304A;--line:#24435F;--muted:#A9B8C6;--accent:#D4AF37;--green:#2E7D5E}
 *{box-sizing:border-box}
-body{margin:0;background:linear-gradient(180deg,rgba(13,31,45,.55) 0%,rgba(13,31,45,.9) 70%,#0D1F2D 100%),url("assets/crown-cinematic.jpg") center top / cover no-repeat fixed,var(--bg);color:var(--fg);font:16px/1.5 "Source Sans 3",system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px;min-height:100vh}
+body{margin:0;background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 55%,transparent) 0%,color-mix(in srgb,var(--bg) 90%,transparent) 70%,var(--bg) 100%),url("assets/crown-cinematic.jpg") center top / cover no-repeat fixed,var(--bg);color:var(--fg);font:16px/1.5 "Source Sans 3",system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px;min-height:100vh}
 h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;margin:0;text-wrap:balance}
 .top{text-align:center;margin-bottom:22px}
 .crest{width:96px;height:96px;border-radius:50%;margin:0 auto 10px;border:2px dashed var(--accent);display:grid;place-items:center;color:var(--accent);font:700 22px "Cormorant Garamond",Georgia,serif;overflow:hidden}
@@ -47,9 +47,25 @@ ul.tight{margin:0;padding-left:18px}
 [hidden]{display:none!important}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.tile{animation:none}.tile:hover{transform:none}}
+:root[data-theme="ggfg-navy"]{--bg:#0D1F2D;--fg:#F9F5EF;--panel:#14304A;--line:#24435F;--muted:#A9B8C6;--accent:#D4AF37;color-scheme:dark}
+:root[data-theme="cream-classic"]{--bg:#F9F5EF;--fg:#0D1F2D;--panel:#FFFFFF;--line:#D9D2C3;--muted:#5B6B7A;--accent:#1A3A5C;color-scheme:light}
+:root[data-theme="midnight-gold"]{--bg:#070B12;--fg:#F5E9C8;--panel:#101826;--line:#2A2415;--muted:#B8A77A;--accent:#D4AF37;color-scheme:dark}
+:root[data-theme="emerald"]{--bg:#0B1F18;--fg:#EAF6EF;--panel:#11302A;--line:#1F4A3E;--muted:#9CC7B5;--accent:#2E7D5E;color-scheme:dark}
+:root[data-theme="royal-purple"]{--bg:#1A1027;--fg:#F4EEFA;--panel:#241838;--line:#3B2A5A;--muted:#B7A6D0;--accent:#B794F4;color-scheme:dark}
+:root[data-theme="ember"]{--bg:#1C100C;--fg:#FBEDE4;--panel:#2A1812;--line:#4A2A1E;--muted:#D6A891;--accent:#E0803A;color-scheme:dark}
+:root[data-theme="ocean"]{--bg:#0A1A2A;--fg:#E6F3FA;--panel:#12283D;--line:#1F3F5C;--muted:#93B8CF;--accent:#38BDF8;color-scheme:dark}
+:root[data-theme="forest"]{--bg:#14190F;--fg:#EEF2E6;--panel:#1D2517;--line:#34412A;--muted:#B2BE9E;--accent:#A3B86B;color-scheme:dark}
+:root[data-theme="slate-mono"]{--bg:#16181D;--fg:#F2F3F5;--panel:#1F222A;--line:#353A46;--muted:#9AA1AE;--accent:#E5E7EB;color-scheme:dark}
+:root[data-theme="rose-gold"]{--bg:#1E1416;--fg:#FBEFEF;--panel:#2A1C20;--line:#4A3038;--muted:#CFAEB3;--accent:#E0A99A;color-scheme:dark}
+body.dark-screen #bgveil{background:rgba(0,0,0,.45)}
+#bgveil{position:fixed;inset:0;pointer-events:none;z-index:-1;background:transparent}
+.controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.controls select,.controls label{font:inherit;font-size:14px;color:var(--fg)}
+.controls select{padding:7px 10px;border-radius:6px;background:var(--panel);color:var(--fg);border:1px solid var(--line)}
 </style>
 </head>
 <body>
+<div id="bgveil" aria-hidden="true"></div>
 
 <div class="banner"><strong>Pending your approval.</strong> Nothing in this preview is live until you approve it.</div>
 
@@ -57,6 +73,7 @@ ul.tight{margin:0;padding-left:18px}
   <div class="crest" aria-label="3G's crest"><img src="https://urbancanvasapparelco.com/assets/3gs-crest.png" alt="3G's crest" onerror="this.remove()">3G's</div>
   <h1>Command Center</h1>
   <p>Built By Faith · Excellence Is A Habit</p>
+  <div class="controls"><label>Theme <select id="themePick" aria-label="Theme"><option value="ggfg-navy">GGFG Navy</option><option value="cream-classic">Cream Classic</option><option value="midnight-gold">Midnight Gold</option><option value="emerald">Emerald</option><option value="royal-purple">Royal Purple</option><option value="ember">Ember</option><option value="ocean">Ocean</option><option value="forest">Forest</option><option value="slate-mono">Slate Mono</option><option value="rose-gold">Rose Gold</option></select></label><label><input type="checkbox" id="darkScreen"> Dark screen</label></div>
 </header>
 
 <section id="home" class="home">
@@ -172,6 +189,17 @@ ul.tight{margin:0;padding-left:18px}
     window.scrollTo(0, 0);
   }
   buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.go); }); });
+
+  var root = document.documentElement, pick = document.getElementById('themePick'), dk = document.getElementById('darkScreen');
+  function applyTheme(v) { root.setAttribute('data-theme', v); if (pick) pick.value = v; try { localStorage.setItem('cc-theme', v); } catch (e) {} }
+  var saved = null; try { saved = localStorage.getItem('cc-theme'); } catch (e) {}
+  applyTheme(saved || 'ggfg-navy');
+  if (pick) pick.addEventListener('change', function () { applyTheme(pick.value); });
+  if (dk) {
+    var on = false; try { on = localStorage.getItem('cc-dark') === '1'; } catch (e) {}
+    dk.checked = on; document.body.classList.toggle('dark-screen', on);
+    dk.addEventListener('change', function () { document.body.classList.toggle('dark-screen', dk.checked); try { localStorage.setItem('cc-dark', dk.checked ? '1' : '0'); } catch (e) {} });
+  }
   show('home');
 })();
 </script>
