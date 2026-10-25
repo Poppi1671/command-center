@@ -12,8 +12,8 @@
 body{margin:0;background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 55%,transparent) 0%,color-mix(in srgb,var(--bg) 90%,transparent) 70%,var(--bg) 100%),url("assets/crown-cinematic.jpg") center top / cover no-repeat fixed,var(--bg);color:var(--fg);font:16px/1.5 "Source Sans 3",system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px;min-height:100vh}
 h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;margin:0;text-wrap:balance}
 .top{text-align:center;margin-bottom:22px}
-.crest{width:96px;height:96px;border-radius:50%;margin:0 auto 10px;border:2px dashed var(--accent);display:grid;place-items:center;color:var(--accent);font:700 22px "Cormorant Garamond",Georgia,serif;overflow:hidden}
-.crest img{width:100%;height:100%;object-fit:contain}
+.crest{width:min(260px,70vw);margin:0 auto 12px;color:var(--accent);font:700 22px "Cormorant Garamond",Georgia,serif;text-align:center}
+.crest img{width:100%;height:auto;display:block}
 .top h1{font-size:40px;color:var(--accent)}
 .top p{color:var(--muted);margin:6px 0 0}
 .tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
@@ -67,10 +67,8 @@ body.dark-screen #bgveil{background:rgba(0,0,0,.45)}
 <body>
 <div id="bgveil" aria-hidden="true"></div>
 
-<div class="banner"><strong>Pending your approval.</strong> Nothing in this preview is live until you approve it.</div>
-
 <header class="top">
-  <div class="crest" aria-label="3G's crest"><img src="/_blob/ace0bc761fa06beb134c2f71b1ac068e" alt="3G's crest" onerror="this.remove()">3G's</div>
+  <div class="crest" aria-label="3G's crest"><img src="/_blob/ace0bc761fa06beb134c2f71b1ac068e" alt="3G's crest" onerror="this.parentNode.textContent='3G\'s'"></div>
   <h1>Command Center</h1>
   <p>Built By Faith · Excellence Is A Habit</p>
   <div class="controls"><label>Theme <select id="themePick" aria-label="Theme"><option value="ggfg-navy">GGFG Navy</option><option value="cream-classic">Cream Classic</option><option value="midnight-gold">Midnight Gold</option><option value="emerald">Emerald</option><option value="royal-purple">Royal Purple</option><option value="ember">Ember</option><option value="ocean">Ocean</option><option value="forest">Forest</option><option value="slate-mono">Slate Mono</option><option value="rose-gold">Rose Gold</option></select></label><label><input type="checkbox" id="darkScreen"> Dark screen</label></div>
