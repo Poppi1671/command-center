@@ -1,9 +1,9 @@
 <?php
-/* 3G's Companion upgrade 8 (Oct 30, 2026): big living-face dock on every Command Center page (narrator, talk, voice, modes, chart). Open once with ?go=3df5c74b7357edb4. */
-if (($_GET['go'] ?? '') !== '3df5c74b7357edb4') { http_response_code(403); exit('Not allowed.'); }
+/* 3G's Companion upgrade 8 (Oct 30, 2026): big living-face dock on every Command Center page + fix: voice no longer triggers the order cha-ching. Open once with ?go=7f868785398cdc21. */
+if (($_GET['go'] ?? '') !== '7f868785398cdc21') { http_response_code(403); exit('Not allowed.'); }
 header('Content-Type: text/plain; charset=utf-8');
 $root = (basename(__DIR__) === '_install') ? dirname(__DIR__) : __DIR__; $tag = '.bak-20261030-dock2'; $out = ''; $bad = 0;
-$P = json_decode('[["desk/navgroups.js", "s.src = \'/desk/companion-dock.js?v=1\';", "s.src = \'/desk/companion-dock.js?v=2\';", "dock version bump"]]', true); $files = [];
+$P = json_decode('[["desk/navgroups.js", "s.src = \'/desk/companion-dock.js?v=1\';", "s.src = \'/desk/companion-dock.js?v=3\';", "dock version bump"], ["desk/host-talk.js", "var au=new Audio(\'data:\'+(mime||\'audio/mpeg\').split(\';\')[0]+\';base64,\'+b64);\\n if(!f)", "var au=new Audio(\'data:\'+(mime||\'audio/mpeg\').split(\';\')[0]+\';base64,\'+b64);au._tt=1;\\n if(!f)", "host-talk: no cha-ching"], ["desk/companion.html", "<script src=\\"companion-face.js?v=1\\"></script>", "<script src=\\"companion-face.js?v=2\\"></script>", "studio face version bump"]]', true); $files = [];
 $DOCK = <<<'DOCKFILE'
 /* 3G's Companion dock v2 (Oct 30, 2026): a big living-face companion on every Command Center page.
    Gold button bottom-right opens a tall panel: large animated face (mouth moves with the voice, moods),
@@ -16,7 +16,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 var MOODTXT={happy:'😊 happy',calm:'🙂 calm',thoughtful:'🤔 thinking',concerned:'😕 concerned',laugh:'😂 laughing'};
 function init(){
 if($('ccDock'))return;
-['/desk/host-talk.js?v=2','/desk/companion-face.js?v=1'].forEach(function(u){var s=document.createElement('script');s.src=u;document.head.appendChild(s)});
+['/desk/host-talk.js?v=2','/desk/companion-face.js?v=2'].forEach(function(u){var s=document.createElement('script');s.src=u;document.head.appendChild(s)});
 var css=document.createElement('style');css.textContent=
 '#ccDock{position:fixed;right:16px;bottom:16px;z-index:9998;font-family:system-ui,sans-serif}'+
 '#ccDockBtn{width:84px;height:84px;border-radius:50%;border:3px solid #C9A24E;background:#14110D center/cover;color:#C9A24E;font:800 30px system-ui;cursor:pointer;box-shadow:0 0 18px rgba(201,162,78,.7)}'+
@@ -47,7 +47,7 @@ function face(img,meta){var cv=$('ccCv'),im=$('ccIm');if(!img){cv.style.display=
 function speak(t,then){call('speak',{id:cur,text:t}).then(function(r){if(!r.ok){if(then)then();return}
  if(FACE&&FACE.img){FACE.speak('audio/mpeg',r.audio,then);return}
  if(window.HostTalk&&curC&&curC.host){HostTalk.play('audio/mpeg',r.audio,then);return}
- var a=new Audio('data:audio/mpeg;base64,'+r.audio);a.onended=function(){if(then)then()};a.play().catch(function(){})})}
+ var a=new Audio('data:audio/mpeg;base64,'+r.audio);a._tt=1;a.onended=function(){if(then)then()};a.play().catch(function(){})})}
 function again(){if($('ccVm').checked&&!rec&&!(mrec&&mrec.state==='recording'))$('ccMic').click()}
 function bub(cls,t,speakable,src){var x=document.createElement('div');x.className='b '+cls;x.textContent=t;
  if(speakable){var b=document.createElement('button');b.textContent='Hear it';b.onclick=function(){speak(t)};x.appendChild(document.createElement('br'));x.appendChild(b)}
@@ -78,11 +78,45 @@ $('ccMic').onclick=function(){if(!cur)return;if(rec||(mrec&&mrec.state==='record
 if(rk())init();else{var n=0,t=setInterval(function(){n++;if(rk()){clearInterval(t);init()}else if(n>600)clearInterval(t)},2000)}
 })();
 DOCKFILE;
+$FACE = <<<'FACEFILE'
+/* 3G's Companion - living avatar (Oct 30, 2026). Draws the companion's avatar on a canvas, moves the mouth with the voice,
+   and shows a mood (happy, calm, thoughtful, concerned, laugh). Works with any avatar image. */
+(function(){
+if(window.CompanionFace)return;
+var AC=null;
+function Face(canvas){this.cv=canvas;this.img=null;this.meta={mx:0.5,my:0.66,mw:0.18};this.mood='calm';this.raf=0;this.cur=null;this.box={a:0};this.t0=performance.now();this.idle();}
+Face.prototype.setImage=function(src,meta){var s=this;return new Promise(function(res){var im=new Image();im.onload=function(){s.img=im;var m=Math.min(1,520/im.width);s.cv.width=Math.round(im.width*m);s.cv.height=Math.round(im.height*m);if(meta)s.meta=meta;s.draw(null,null);res(true)};im.onerror=function(){res(false)};im.src=src})};
+Face.prototype.setMeta=function(m){this.meta=m;this.draw(null,null)};
+Face.prototype.setMood=function(m){this.mood=m||'calm';if(this.onmood)this.onmood(this.mood)};
+var MOODS={happy:{tilt:0.02,bob:3,glow:'rgba(201,162,78,.75)',tint:null,speed:650},calm:{tilt:0.012,bob:1.5,glow:'rgba(201,162,78,.45)',tint:null,speed:900},thoughtful:{tilt:0.03,bob:1,glow:'rgba(120,140,200,.45)',tint:'rgba(40,60,120,.10)',speed:1400},concerned:{tilt:0.008,bob:0.6,glow:'rgba(160,120,120,.45)',tint:'rgba(60,30,30,.14)',speed:1100},laugh:{tilt:0.04,bob:6,glow:'rgba(240,200,90,.9)',tint:null,speed:260}};
+Face.prototype.draw=function(an,buf){if(!this.img)return;var cv=this.cv,W=cv.width,H=cv.height,c=cv.getContext('2d'),M=MOODS[this.mood]||MOODS.calm,t=performance.now()-this.t0;
+var rms=0;if(an){an.getByteTimeDomainData(buf);for(var i=0;i<buf.length;i++){var v=(buf[i]-128)/128;rms+=v*v}rms=Math.sqrt(rms/buf.length)}
+this.box.a=this.box.a*0.55+Math.min(1,rms*5.5)*0.45;var a=this.box.a;if(this.mood==='laugh'&&!an)a=0.35+0.3*Math.abs(Math.sin(t/120));
+c.clearRect(0,0,W,H);c.save();c.translate(W/2,H/2);c.rotate(Math.sin(t/M.speed)*M.tilt);c.translate(-W/2,-H/2+Math.sin(t/(M.speed*0.72))*M.bob+a*2);
+c.drawImage(this.img,0,0,W,H);
+var m=this.meta,mx=m.mx*W,my=m.my*H,mw=m.mw*W,open=a*mw*0.5;
+if(open>0.8){c.fillStyle='#2b1010';c.beginPath();c.ellipse(mx,my+open*0.35,mw*0.42,Math.max(1,open*0.55),0,0,7);c.fill();
+var sw=Math.round(mw*2.2),sh=Math.round(mw*1.5),o=document.createElement('canvas');o.width=sw;o.height=sh;var oc=o.getContext('2d'),sx=Math.round(mx-sw/2),sy=Math.round(my),f=this.img;
+oc.drawImage(f,sx*(f.width/W),sy*(f.height/H),sw*(f.width/W),sh*(f.height/H),0,0,sw,sh);oc.globalCompositeOperation='destination-in';
+var g=oc.createLinearGradient(0,0,0,sh);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(0.55,'rgba(0,0,0,1)');g.addColorStop(1,'rgba(0,0,0,0)');oc.fillStyle=g;oc.fillRect(0,0,sw,sh);
+var h=oc.createLinearGradient(0,0,sw,0);h.addColorStop(0,'rgba(0,0,0,0)');h.addColorStop(0.2,'rgba(0,0,0,1)');h.addColorStop(0.8,'rgba(0,0,0,1)');h.addColorStop(1,'rgba(0,0,0,0)');oc.fillStyle=h;oc.fillRect(0,0,sw,sh);c.drawImage(o,sx,sy+open)}
+if(M.tint){c.fillStyle=M.tint;c.fillRect(0,0,W,H)}
+c.restore();cv.style.boxShadow='0 0 22px '+M.glow};
+Face.prototype.idle=function(){var s=this;cancelAnimationFrame(s.raf);function loop(){if(!s.cur)s.draw(null,null);s.raf=requestAnimationFrame(loop)}loop()};
+Face.prototype.stop=function(){if(this.cur){try{this.cur.pause()}catch(e){}this.cur=null}};
+Face.prototype.speak=function(mime,b64,onend){var s=this;s.stop();var au=new Audio('data:'+(mime||'audio/mpeg').split(';')[0]+';base64,'+b64);au._tt=1;s.cur=au;var an=null,buf=null;
+try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();var src=AC.createMediaElementSource(au);an=AC.createAnalyser();an.fftSize=512;buf=new Uint8Array(an.fftSize);src.connect(an);an.connect(AC.destination)}catch(e){an=null}
+cancelAnimationFrame(s.raf);function loop(){s.draw(an,buf);s.raf=requestAnimationFrame(loop)}
+au.onended=function(){s.cur=null;s.box.a=0;s.idle();if(onend)onend()};au.onerror=function(){s.cur=null;s.idle()};
+return au.play().then(loop).catch(function(){s.cur=null;s.idle()})};
+window.CompanionFace=Face;
+})();
+FACEFILE;
 foreach ($P as $p) { $f = $root . '/' . $p[0]; if (!isset($files[$f])) { if (!is_file($f)) { $out .= "MISSING $p[0]\n"; $bad++; continue; } $files[$f] = file_get_contents($f); } }
 foreach ($P as $p) { $f = $root . '/' . $p[0]; if (!isset($files[$f])) continue; $n = substr_count($files[$f], $p[1]);
   if ($n !== 1) { $out .= "ANCHOR x$n ($p[3]) in $p[0]\n"; $bad++; continue; }
   $files[$f] = str_replace($p[1], $p[2], $files[$f]); $out .= "ok  $p[3]\n"; }
 if ($bad) { echo "STOPPED, nothing changed.\n$out"; exit; }
-$dk = $root . '/desk/companion-dock.js'; if (!is_file($dk . $tag)) copy($dk, $dk . $tag); file_put_contents($dk, $DOCK, LOCK_EX); $out .= "ok  desk/companion-dock.js replaced (backup kept)\n";
+foreach ([['desk/companion-dock.js', $DOCK], ['desk/companion-face.js', $FACE]] as $w) { $fp = $root . '/' . $w[0]; if (is_file($fp) && !is_file($fp . $tag)) copy($fp, $fp . $tag); file_put_contents($fp, $w[1], LOCK_EX); $out .= "ok  " . $w[0] . " replaced\n"; }
 foreach ($files as $f => $c) { if (!is_file($f . $tag)) copy($f, $f . $tag); file_put_contents($f, $c, LOCK_EX); $out .= "ok  " . str_replace($root . '/', '', $f) . " patched\n"; }
 @unlink(__FILE__); echo $out . "\nDONE.\n";
