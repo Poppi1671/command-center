@@ -1,6 +1,6 @@
 <?php
 /* CLI runner for one installer step (temporary cron). Usage: php run.php 1|2|3   |   php run.php 9 <installer#> = anchor diagnostics */
-$n = (int)($argv[1] ?? 0); $T = [1 => '74aafa413e02a6ea', 2 => 'fd99f4cf975cf7ee', 3 => 'f59050a460283e43'];
+$n = (int)($argv[1] ?? 0); $T = [1 => '74aafa413e02a6ea', 2 => 'fd99f4cf975cf7ee', 3 => 'f59050a460283e43', 4 => '622fc54d8beb8da4'];
 $log = dirname(__DIR__) . '/companion-install-log.txt';
 echo "run.php step $n as " . get_current_user() . " php " . PHP_VERSION . " at " . date('c') . "\n";
 if ($n === 8) { $c = (string)file_get_contents(dirname(__DIR__) . '/desk/companion.html'); $i = 0; while (($i = strpos($c, 'setMood', $i)) !== false) { echo json_encode(substr($c, $i - 20, 140)) . "\n" . bin2hex(substr($c, $i, 60)) . "\n"; $i++; } echo "count(r.sources)=" . substr_count($c, 'r.sources') . "\n"; exit; }
