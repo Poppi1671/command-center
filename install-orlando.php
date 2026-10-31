@@ -2,14 +2,14 @@
 /* ORLANDO GROUP ORDERS installer (Oct 31 2026).
    Adds: api/orlando.php (campaign engine), desk/orlando.js (Command Center tab), /group-orders/ (free-design page).
    Patches: desk/index.html, desk/navgroups.js. Backs everything up, checks syntax, rolls back on error, deletes itself.
-   Open once with ?go=0370ef735d1122f2 */
-if (($_GET['go'] ?? '') !== '0370ef735d1122f2') { http_response_code(403); exit('Not allowed.'); }
+   Open once with ?go=c5e706e535363440 */
+if (($_GET['go'] ?? '') !== 'c5e706e535363440') { http_response_code(403); exit('Not allowed.'); }
 header('Content-Type: text/plain; charset=utf-8');
-$root = (basename(__DIR__) === '_install') ? dirname(__DIR__) : __DIR__;
+$root = preg_match('~/_inst~', __DIR__) ? dirname(__DIR__) : __DIR__;
 $tag = '.bak-20261031-orlando'; $out = ''; $bad = 0;
 if (!is_file($root . '/api/svc_lib.php')) exit("Wrong folder: api/svc_lib.php not found.\n");
 $NEW = [];
-$NEW['api/orlando.php'] = <<<'FBAEB959A'
+$NEW['api/orlando.php'] = <<<'F78CC215E'
 <?php
 // Orlando Group Orders engine (Oct 31 2026 -> Dec 31 2026). The one campaign we run to close the year.
 // Desk:   GET  ?a=today|all|tiers|scripts&id=..|board      POST {a:import|save|touch|next|campaign|archive|goal}
@@ -366,8 +366,8 @@ if ($op === 'campaign') {
     'msg' => 'Page built as a DRAFT. Add the design image and set it to Open in the Group Pages tab, then send the link.']);
 }
 tt_json(['error' => 'Unknown action.'], 400);
-FBAEB959A;
-$NEW['desk/orlando.js'] = <<<'FB69E6448'
+F78CC215E;
+$NEW['desk/orlando.js'] = <<<'F52CB0B17'
 /* 3G's Command Center: ORLANDO GROUP ORDERS (TTOG).
    The one campaign we run from Oct 31 to Dec 31 2026. Call list, scripts, the approved price ladder,
    one-tap outcomes and a live group page per lead. Backend: ../api/orlando.php
@@ -632,8 +632,8 @@ window.TTOG = {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', add); else add();
 })();
 })();
-FB69E6448;
-$NEW['group-orders/index.html'] = <<<'FACF40A5B'
+F52CB0B17;
+$NEW['group-orders/index.html'] = <<<'F936C485F'
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Custom Group Shirts, Orlando | Urban Canvas Co.</title>
@@ -841,7 +841,7 @@ function send(ev){
 }
 </script>
 </body></html>
-FACF40A5B;
+F936C485F;
 
 $P = json_decode('[["desk/index.html", "|| function(){ return window.TTGROW && TTGROW.has(TAB) ? TTGROW.html(TAB) :", "|| function(){ return window.TTOG && TTOG.has(TAB) ? TTOG.html(TAB) : window.TTGROW && TTGROW.has(TAB) ? TTGROW.html(TAB) :", "render: route the Orlando tab"], ["desk/index.html", "  if (window.TTAMB && TTAMB.has(TAB)) TTAMB.bind(TAB);", "  if (window.TTAMB && TTAMB.has(TAB)) TTAMB.bind(TAB);\\n  if (window.TTOG && TTOG.has(TAB)) TTOG.bind(TAB);", "render: bind the Orlando tab"], ["desk/index.html", "&& !(window.TTAMB && TTAMB.has(TAB))", "&& !(window.TTAMB && TTAMB.has(TAB)) && !(window.TTOG && TTOG.has(TAB))", "stop the 60s refresh wiping the Orlando tab"], ["desk/index.html", "<script src=\\"crm.js?v=3\\"></script>", "<script src=\\"crm.js?v=3\\"></script>\\n<script src=\\"orlando.js?v=1\\"></script>", "load desk/orlando.js"], ["desk/navgroups.js", "[\'start\',\'dash\',\'cal\',\'inbox\',\'play\',\'tools\']", "[\'orl\',\'start\',\'dash\',\'cal\',\'inbox\',\'play\',\'tools\']", "put Orlando first in the Home menu"]]', true);
 $files = [];
