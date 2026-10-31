@@ -1,13 +1,13 @@
 <?php
 /* THE PRODUCT LAB installer (Oct 31 2026). Three gates before anything gets press time.
-   Open once with ?go=b4d159133d3cbcde */
-if (($_GET['go'] ?? '') !== 'b4d159133d3cbcde') { http_response_code(403); exit('Not allowed.'); }
+   Open once with ?go=a6c57846ab97412b */
+if (($_GET['go'] ?? '') !== 'a6c57846ab97412b') { http_response_code(403); exit('Not allowed.'); }
 header('Content-Type: text/plain; charset=utf-8');
 $root = preg_match('~/_inst~', __DIR__) ? dirname(__DIR__) : __DIR__;
 $tag = '.bak-20261031-lab'; $out = ''; $bad = 0;
 if (!is_file($root . '/api/svc_lib.php')) exit("Wrong folder: api/svc_lib.php not found.\n");
 $NEW = [];
-$NEW['api/lab.php'] = <<<'FEB2CC4C9'
+$NEW['api/lab.php'] = <<<'FA268D894'
 <?php
 /* 3G's Product Lab (Oct 31 2026). Takes a product idea and answers one question honestly:
    can WE win this one? Scored against his real blank costs, his actual presses and his own call list.
@@ -18,9 +18,18 @@ declare(strict_types=1);
 require_once __DIR__ . '/svc_lib.php';
 require_once __DIR__ . '/money_lib.php';
 
-/* what he can actually make in his own house. Anything not here, he is buying from a factory and loses. */
-const LAB_PRINT = ['tee' => 'DTF', 'crew' => 'DTF', 'hood' => 'DTF', 'tote' => 'DTF', 'jog' => 'DTF',
-  'hat' => 'DTF, cap press', 'mug' => 'Sublimation', 'tum' => 'Sublimation', 'sock' => 'NOT in-house'];
+/* What he can press. These are only the STARTING values - he owns this list and can change
+   any of it in the panel. A guess about his shop must never be the thing that kills a product. */
+const LAB_PRINT_DEFAULT = ['tee' => 'DTF', 'crew' => 'DTF', 'hood' => 'DTF', 'tote' => 'DTF', 'jog' => 'DTF',
+  'hat' => 'DTF, cap press', 'mug' => 'Sublimation', 'tum' => 'Sublimation', 'sock' => 'DTF or sublimation'];
+const LAB_CANT = 'NOT in-house';
+function lab_press() {
+  static $c = null; if ($c !== null) return $c;
+  $d = tt_read('lab.json'); $saved = (array)($d['press'] ?? []);
+  $out = LAB_PRINT_DEFAULT;
+  foreach ($saved as $k => $v) { $k = preg_replace('/[^a-z0-9]/', '', strtolower((string)$k)); $v = trim(strip_tags((string)$v)); if ($k !== '') $out[$k] = mb_substr($v, 0, 60); }
+  $c = $out; return $out;
+}
 const LAB_FLOOR = 35;          // same floor the Outreach Machine holds
 const LAB_TARGET = 42;
 const LAB_BULK_POST = 0.75;    // one box to a group leader
@@ -72,10 +81,13 @@ function lab_ladder($blank) {
 function lab_gates($P) {
   $blank = (string)($P['blank'] ?? '');
   $g = [];
-  $how = LAB_PRINT[$blank] ?? '';
-  $g['print'] = ['ok' => $how !== '' && $how !== 'NOT in-house',
+  $how = lab_press()[$blank] ?? '';
+  $g['print'] = ['ok' => $how !== '' && $how !== LAB_CANT,
     'name' => 'Can we print it in-house?',
-    'note' => $how === '' ? 'No blank picked.' : ($how === 'NOT in-house' ? 'Crew socks are not something you press at home. You would be buying from a factory and competing on price.' : 'Yes, on your own press: ' . $how . '.')];
+    'note' => $blank === '' ? 'No blank picked.'
+      : ($how === '' || $how === LAB_CANT
+        ? 'You have this one marked as not pressed in-house, so you would be buying it in and competing on price. Change that in What you can press if it is wrong.'
+        : 'Yes, on your own press: ' . $how . '.')];
   $lad = $blank !== '' ? lab_ladder($blank) : [];
   $grp = 0; $sing = 0;
   foreach ($lad as $r) { if ($r['k'] === 'group') $grp = $r['margin']; if ($r['k'] === 'single') $sing = $r['margin']; }
@@ -158,7 +170,7 @@ function lab_full($P) {
   $P['parts'] = $s['parts'] ?? []; $P['why'] = $s['why'];
   $P['ladder'] = ($P['blank'] ?? '') !== '' ? lab_ladder($P['blank']) : [];
   $P['plan'] = lab_plan($P); $P['artistly'] = lab_artistly($P); $P['offer'] = lab_offer_line($P);
-  $P['print_how'] = LAB_PRINT[$P['blank'] ?? ''] ?? '';
+  $P['print_how'] = lab_press()[$P['blank'] ?? ''] ?? '';
   return $P;
 }
 
@@ -170,7 +182,7 @@ if ($m === 'GET') {
   $blanks = [];
   foreach (lab_names() as $k => $n) {
     if (strpos($k, 'x') === 0) continue;   // the Tapstitch exclusives are not pressed here
-    $blanks[$k] = ['name' => $n, 'cost' => lab_cost($k), 'how' => LAB_PRINT[$k] ?? 'NOT in-house'];
+    $blanks[$k] = ['name' => $n, 'cost' => lab_cost($k), 'how' => lab_press()[$k] ?? ''];
   }
   if ($a === 'blanks') tt_json(['ok' => true, 'blanks' => $blanks, 'floor' => LAB_FLOOR]);
   if ($a === 'get') { $P = lab_get($_GET['p'] ?? ''); if (!$P) tt_json(['error' => 'Not found.'], 404); tt_json(['ok' => true, 'product' => lab_full($P)]); }
@@ -197,7 +209,7 @@ if ($op === 'save') {
   if ($pid === '') { $base = trim(preg_replace('~[^a-z0-9]+~', '-', strtolower($title)), '-') ?: 'product'; $pid = substr($base, 0, 40); $n = 2; while (lab_get($pid)) $pid = substr($base, 0, 36) . '-' . $n++; }
   $old = lab_get($pid);
   $P = ['id' => $pid, 'title' => $title,
-    'blank' => isset(LAB_PRINT[$d['blank'] ?? '']) ? $d['blank'] : 'tee',
+    'blank' => isset(lab_press()[$d['blank'] ?? '']) ? $d['blank'] : 'tee',
     'design_line' => tt_clean($d['design_line'] ?? '', 120),
     'angle' => tt_clean($d['angle'] ?? '', 120),
     'audience' => tt_clean($d['audience'] ?? '', 120),
@@ -213,6 +225,17 @@ if ($op === 'save') {
     'created' => (int)($old['created'] ?? time()), 'updated' => time()];
   tt_update('lab.json', function ($x) use ($pid, $P) { $x['products'][$pid] = $P; return ['data' => $x]; });
   tt_json(['ok' => true, 'id' => $pid, 'product' => lab_full($P)]);
+}
+if ($op === 'press') {   // he owns this list, not me
+  $in = (array)($b['press'] ?? []);
+  $clean = [];
+  foreach ($in as $k => $v) {
+    $k = preg_replace('/[^a-z0-9]/', '', strtolower((string)$k));
+    if ($k === '' || !isset(TTS_NAMES[$k])) continue;
+    $clean[$k] = mb_substr(trim(strip_tags((string)$v)), 0, 60);
+  }
+  tt_update('lab.json', function ($x) use ($clean) { $x['press'] = $clean; $x['press_updated'] = time(); return ['data' => $x]; });
+  tt_json(['ok' => true, 'press' => $clean]);
 }
 if ($op === 'delete') {
   if (!lab_get($id)) tt_json(['error' => 'Not found.'], 404);
@@ -248,14 +271,14 @@ if ($op === 'offer') {
   tt_json($r);
 }
 tt_json(['error' => 'Unknown action.'], 400);
-FEB2CC4C9;
-$NEW['desk/lab.js'] = <<<'FB1A0738E'
+FA268D894;
+$NEW['desk/lab.js'] = <<<'FF18E70A6'
 /* 3G's Command Center: THE PRODUCT LAB (TTLAB).
    One question, answered honestly: can WE win this product? Scored against his real blank
    costs, his own presses and his own call list. Backend: ../api/lab.php */
 (function(){
 var TABS = {lab:'The Product Lab'};
-var S = {list:null, blanks:{}, cur:null, msg:'', busy:false, view:'list', offer:null, leads:null, pick:{}, biz:'orlando'};
+var S = {list:null, blanks:{}, cur:null, msg:'', busy:false, view:'list', offer:null, leads:null, pick:{}, biz:'orlando', press:{}};
 function $(i){ return document.getElementById(i); }
 function e(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 function q(s){ return String(s==null?'':s).replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
@@ -276,6 +299,7 @@ function vList(){
   var h = '<h2 class="lb-h">🧪 The Product Lab</h2>' +
     '<p class="lb-mute">Three gates before anything gets your press time: <b>can you print it</b>, <b>does it hold 35% at your real cost</b>, and <b>is it a design or just a category</b>. Fail one and it is dead, whatever the trend says.</p>' +
     '<div class="lb-acts"><button class="lb-b gold" onclick="TTLAB.make()">➕ New product idea</button>' +
+    '<button class="lb-b" onclick="TTLAB.press()">🔧 What you can press</button>' +
     '<button class="lb-b" onclick="TTLAB.refresh()">↻ Refresh</button></div>';
   if (S.msg) h += '<div class="lb-msg">' + e(S.msg) + '</div>';
   var L = S.list || [];
@@ -380,8 +404,23 @@ function vOffer(){
     '<div class="lb-acts"><button class="lb-b green" onclick="TTLAB.send()"' + (n?'':' disabled') + '>Put it on ' + n + ' call' + (n===1?'':'s') + ' for today</button></div></div>';
   return h;
 }
+
+function vPress(){
+  var B = S.blanks || {};
+  var h = '<div class="lb-acts"><button class="lb-b" onclick="TTLAB.back()">\u2190 Back</button></div>' +
+    '<h2 class="lb-h">What you can press</h2>' +
+    '<p class="lb-mute">This is <b>your</b> list, not a guess. Write how you press each one. Leave it blank, or write <b>NOT in-house</b>, only for something you would have to buy in \u2014 that is the one thing that kills a product outright.</p>';
+  if (S.msg) h += '<div class="lb-msg">' + e(S.msg) + '</div>';
+  h += '<div class="lb-card"><div class="lb-form">' + Object.keys(B).map(function(k){
+    return '<label>' + e(B[k].name) + ' <small>blank ' + m2(B[k].cost) + '</small>' +
+      '<input value="' + e(S.press[k] != null ? S.press[k] : (B[k].how||'')) + '" placeholder="DTF, sublimation, cap press\u2026" oninput="TTLAB.setPress(\'' + q(k) + '\',this.value)"></label>';
+  }).join('') + '</div>' +
+  '<div class="lb-acts"><button class="lb-b gold" onclick="TTLAB.savePress()">Save what you can press</button></div></div>';
+  return h;
+}
+
 function draw(){ var b=$('lbBody'); if(!b) return; if(!S.list && !S.cur){ b.innerHTML='<div class="lb-empty">Loading…</div>'; return; }
-  b.innerHTML = S.view==='offer' ? vOffer() : (S.cur ? vEdit() : vList()); }
+  b.innerHTML = S.view==='offer' ? vOffer() : (S.view==='press' ? vPress() : (S.cur ? vEdit() : vList())); }
 function rescore(){
   clearTimeout(S.t);
   S.t = setTimeout(function(){
@@ -465,6 +504,15 @@ window.TTLAB = {
       .then(function(r){ return r.json(); })
       .then(function(d){ S.leads = (d.all||[]).filter(function(x){ return !x.archived && !x.spam && x.stage!=='lost'; }); draw(); }); },
   pick: function(id,on){ S.pick[id]=on; draw(); },
+  press: function(){ S.press={}; S.cur=null; S.view='press'; S.msg=''; draw(); window.scrollTo(0,0); },
+  setPress: function(k,v){ S.press[k]=v; },
+  savePress: function(){
+    if (S.busy) return; S.busy=true; S.msg='Saving\u2026'; draw();
+    var out = {}; Object.keys(S.blanks).forEach(function(k){ out[k] = (S.press[k] != null ? S.press[k] : (S.blanks[k].how||'')); });
+    post({a:'press', press:out}).then(function(r){ S.busy=false;
+      S.msg = r.error ? r.error : 'Saved. Every product is scored against this from now on.';
+      S.list=null; draw(); load(); });
+  },
   send: function(){
     if (S.busy) return;
     var ids = Object.keys(S.pick).filter(function(k){ return S.pick[k]; });
@@ -489,7 +537,7 @@ window.TTLAB = {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', add); else add();
 })();
 })();
-FB1A0738E;
+FF18E70A6;
 
 $P = json_decode('[["desk/index.html", "<script src=\\"narrator.js?v=1\\"></script>", "<script src=\\"narrator.js?v=1\\"></script>\\n<script src=\\"lab.js?v=1\\"></script>", "load the Product Lab"], ["desk/navgroups.js", "[\'orl\',\'narr\',\'start\',\'dash\',\'cal\',\'inbox\',\'play\',\'tools\']", "[\'orl\',\'narr\',\'lab\',\'start\',\'dash\',\'cal\',\'inbox\',\'play\',\'tools\']", "put the Product Lab in the Home menu"]]', true);
 $files = [];
