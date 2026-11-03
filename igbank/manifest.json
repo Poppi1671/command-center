@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "ratio": "4:5",
+  "raw_base": "https://raw.githubusercontent.com/Poppi1671/command-center/ig-assets/igbank/",
+  "accounts": [
+    "quote_amatic",
+    "threadedtruthsapparelco",
+    "saywhatyouwantcustomtees",
+    "teesr4us",
+    "digivaultcreatives",
+    "how2catchafish"
+  ],
+  "campaigns": {
+    "gpts": {
+      "cta": "Call or text 352-931-3768 or book at pristinedrive.online",
+      "must_include": [
+        "LIMITED TIME SALE and it ends soon",
+        "352-931-3768",
+        "pristinedrive.online"
+      ],
+      "hashtags": [
+        "#OrlandoAirport",
+        "#MCO",
+        "#TampaAirport",
+        "#CentralFlorida",
+        "#AirportTransfer"
+      ],
+      "facts": "Private SUV (2023 Kia Telluride X-Line Prestige). Flight tracked. Curbside pickup. $49.95-$79.95, same price both ways. MCO + TPA + all of Central Florida. Base Davenport FL."
+    },
+    "ambassador": {
+      "cta": "Join free at urbancanvasapparelco.com/share",
+      "must_include": [
+        "Earnings vary. You are paid after payment clears and the 7-day return window passes.",
+        "Under 18? Get a parent's OK first."
+      ],
+      "hashtags": [
+        "#CentralFlorida",
+        "#OrlandoCreators",
+        "#SideHustle",
+        "#BrandAmbassador",
+        "#UrbanCanvas"
+      ],
+      "facts": "Crew $5 per order, 15% off own gear. Creators 5,000+ followers: 15% per order, $7 minimum, 20% off own gear. Royalty 10,000+ followers: 20% per order, 25% off own gear. Free shirt after 3 sales. Paid every Friday. No cost, no inventory, no selling."
+    },
+    "apparel": {
+      "cta": "Shop at urbancanvasapparelco.com",
+      "must_include": [],
+      "hashtags": [
+        "#CentralFlorida",
+        "#Orlando",
+        "#CustomTees",
+        "#GroupOrders",
+        "#UrbanCanvas"
+      ],
+      "facts": "Custom apparel, group orders, church and team tees, no minimum, free design. Central Florida."
+    }
+  },
+  "rules": [
+    "Every post targets Orlando / greater Central Florida (standing rule, Oct 26).",
+    "Never post the same image to the same account within 14 days.",
+    "Never post the same image to two accounts on the same day.",
+    "3-5 hashtags per post. Rewrite the caption fresh each time - never paste an old one verbatim.",
+    "Max 2 posts per account per day.",
+    "Ambassador posts MUST carry the earnings disclosure and the under-18 line.",
+    "GPTS posts MUST carry the sale-ending urgency and 352-931-3768.",
+    "Turn OFF the Facebook cross-post toggle on every post (choose 'Don't share this post').",
+    "Set crop to 4:5. Assets are already padded, nothing should be cut.",
+    "No boosts, no spending, no password entry, no DMs."
+  ],
+  "assets": {
+    "gpts": [
+      "ad05-gpts-landed.jpg",
+      "ad06-gpts-rideshare.jpg",
+      "car-post-1.jpg",
+      "car-post-2.jpg",
+      "car-post-3.jpg",
+      "car-post-4.jpg",
+      "car-post-5.jpg",
+      "car-post-6.jpg",
+      "car-post-7.jpg",
+      "dv1.jpg",
+      "flyer-1-airport-rides.jpg",
+      "flyer-2-vacation-home-rides.jpg",
+      "r3-07-gpts-mco.jpg",
+      "r3-08-gpts-early.jpg"
+    ],
+    "ambassador": [
+      "ad10-amb-postonce.jpg",
+      "ambassador-flyer-bear.jpg",
+      "ambassador-flyer-bull.jpg",
+      "ambassador-flyer-cobra.jpg",
+      "ambassador-flyer-gorilla.jpg",
+      "ambassador-flyer-panther.jpg",
+      "ambassador-flyer-rhino.jpg",
+      "ambassador-flyer-shark.jpg",
+      "ambassador-flyer-tiger.jpg",
+      "ambassador-flyer-wolf.jpg",
+      "flyer-ambassador-v4.jpg",
+      "r3-10-ambassador.jpg"
+    ],
+    "apparel": [
+      "ad02-reunion-chat.jpg",
+      "ad03-church-family.jpg",
+      "ad04-swyw-joke.jpg",
+      "ad08-team-link.jpg",
+      "ad09-faith-wear.jpg",
+      "ad11-quote-wear.jpg",
+      "ad12-hoodie-season.jpg",
+      "fish1.jpg",
+      "q1.jpg",
+      "r3-01-last-call.jpg",
+      "r3-02-church-20.jpg",
+      "r3-03-no-minimum.jpg",
+      "r3-04-gift-box.jpg",
+      "r3-06-reunion.jpg",
+      "r3-11-quote.jpg",
+      "r3-12-sports.jpg",
+      "swyw1.jpg",
+      "t4u1.jpg",
+      "tt1.jpg"
+    ]
+  }
+}
