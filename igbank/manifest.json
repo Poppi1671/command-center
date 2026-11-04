@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "ratio": "4:5",
   "raw_base": "https://raw.githubusercontent.com/Poppi1671/command-center/ig-assets/igbank/",
   "accounts": [
@@ -83,6 +83,16 @@
       "flyer-2-vacation-home-rides.jpg",
       "gpts-surge.jpg",
       "gpts-waiting.jpg",
+      "gpts1-last-mile.jpg",
+      "gpts2-same-price.jpg",
+      "gpts3-skip-line.jpg",
+      "gpts4-family.jpg",
+      "gpts5-ride-home.jpg",
+      "gpts6-safe-travels.jpg",
+      "r2-gpts1-arrive-rested.jpg",
+      "r2-gpts2-theme-park.jpg",
+      "r2-gpts3-late-flight.jpg",
+      "r2-gpts4-grandparents.jpg",
       "r3-07-gpts-mco.jpg",
       "r3-08-gpts-early.jpg"
     ],
@@ -91,6 +101,9 @@
       "amb-friday.jpg",
       "amb-throne.jpg",
       "amb-tiers.jpg",
+      "amb1-we-write.jpg",
+      "amb2-shirts-you-believe.jpg",
+      "amb3-church-family.jpg",
       "ambassador-flyer-bear.jpg",
       "ambassador-flyer-bull.jpg",
       "ambassador-flyer-cobra.jpg",
@@ -101,7 +114,8 @@
       "ambassador-flyer-tiger.jpg",
       "ambassador-flyer-wolf.jpg",
       "flyer-ambassador-v4.jpg",
-      "r3-10-ambassador.jpg"
+      "r3-10-ambassador.jpg",
+      "v11-ambassador.jpg"
     ],
     "apparel": [
       "ad02-reunion-chat.jpg",
@@ -111,8 +125,19 @@
       "ad09-faith-wear.jpg",
       "ad11-quote-wear.jpg",
       "ad12-hoodie-season.jpg",
+      "bulk1-free-design.jpg",
+      "bulk2-florida-classic.jpg",
+      "bulk3-christmas.jpg",
       "fish1.jpg",
       "q1.jpg",
+      "r2-fundraiser.jpg",
+      "r2-gift-bundle.jpg",
+      "r2-group-nov10.jpg",
+      "r2-hats.jpg",
+      "r2-hoodies.jpg",
+      "r2-mugs.jpg",
+      "r2-totes.jpg",
+      "r2-type-any-word.jpg",
       "r3-01-last-call.jpg",
       "r3-02-church-20.jpg",
       "r3-03-no-minimum.jpg",
@@ -122,7 +147,18 @@
       "r3-12-sports.jpg",
       "swyw1.jpg",
       "t4u1.jpg",
-      "tt1.jpg"
+      "tt1.jpg",
+      "v1-newspaper.jpg",
+      "v10-thermometer.jpg",
+      "v12-question.jpg",
+      "v2-neon.jpg",
+      "v3-photo-fullbleed.jpg",
+      "v4-checklist.jpg",
+      "v5-countdown.jpg",
+      "v6-split.jpg",
+      "v7-notebook.jpg",
+      "v8-gift-tag.jpg",
+      "v9-faith.jpg"
     ]
   }
 }
