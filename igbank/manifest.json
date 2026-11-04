@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "ratio": "4:5",
   "raw_base": "https://raw.githubusercontent.com/Poppi1671/command-center/ig-assets/igbank/",
   "accounts": [
@@ -81,11 +81,16 @@
       "dv1.jpg",
       "flyer-1-airport-rides.jpg",
       "flyer-2-vacation-home-rides.jpg",
+      "gpts-surge.jpg",
+      "gpts-waiting.jpg",
       "r3-07-gpts-mco.jpg",
       "r3-08-gpts-early.jpg"
     ],
     "ambassador": [
       "ad10-amb-postonce.jpg",
+      "amb-friday.jpg",
+      "amb-throne.jpg",
+      "amb-tiers.jpg",
       "ambassador-flyer-bear.jpg",
       "ambassador-flyer-bull.jpg",
       "ambassador-flyer-cobra.jpg",
