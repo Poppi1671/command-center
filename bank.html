@@ -105,13 +105,14 @@ function render(){
   var list=rows(), out=document.getElementById('out');
   if(!list.length){ out.innerHTML='<p class="empty">Nothing matches.</p>'; tally(); return; }
   var by={}; list.forEach(function(r){ (by[r.c]=by[r.c]||[]).push(r); });
-  var html='';
+  var html=''; var n=0;
   ['gpts','ambassador','apparel'].forEach(function(c){
     if(!by[c]) return;
     html += '<h2>'+(c==='gpts'?'GPTS · Transportation':c==='ambassador'?'Ambassadors':'Apparel &amp; Group Orders')+' — '+by[c].length+'</h2><div class="grid">';
     by[c].forEach(function(r){
+      n++;
       html += '<article class="card'+(got(r.k)?' done':'')+'" id="k_'+esc(r.k)+'">'
-        + '<img src="'+DATA.base+c+'/'+encodeURIComponent(r.f)+'" alt="'+esc(nice(r.k))+'" loading="lazy">'
+        + '<img src="'+DATA.base+c+'/'+encodeURIComponent(r.f)+'" alt="'+esc(nice(r.k))+'" loading="'+(n<=12?'eager':'lazy')+'">'
         + '<div class="in">'
         +   '<div class="nm">'+esc(nice(r.k))+'</div>'
         +   '<div class="acct">Post on @'+esc(r.acct)+'</div>'
