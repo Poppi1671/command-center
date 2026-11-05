@@ -24,10 +24,10 @@ if (!is_writable($DESK)) exit("FAIL: desk folder not writable\n");
 
 $html=(string)file_get_contents($IDX);
 $hasNav = strpos($html,'<nav id="tabs">')!==false;
-$hasBody= stripos($html,'</body>')!==false;
+$hasBody= true; // this desk page has no closing body tag; we append instead
 echo "desk/index.html : ".number_format(strlen($html))." bytes\n";
 echo "nav#tabs found  : ".($hasNav?'yes':'NO')."\n";
-echo "closing body    : ".($hasBody?'yes':'NO')."\n";
+echo "insert point    : ".(stripos($html,'</body>')!==false?'before </body>':'end of file')."\n";
 echo "bank.html       : ".number_format(filesize(__DIR__.'/bank.html'))." bytes\n";
 echo "bank-data.json  : ".number_format(filesize(__DIR__.'/bank-data.json'))." bytes\n";
 if(!$hasNav || !$hasBody) exit("\nFAIL: desk page is not what we expected. Nothing changed.\n");
@@ -44,7 +44,10 @@ $block=$A."\n"
 
 $had = strpos($html,$A)!==false;
 if($had){ $out=preg_replace('/'.preg_quote($A,'/').'.*?'.preg_quote($B,'/').'/s',$block,$html,1); }
-else { $p=strripos($html,'</body>'); $out=substr($html,0,$p).$block."\n".substr($html,$p); }
+else {
+  $p=strripos($html,'</body>');
+  $out = ($p===false) ? rtrim($html)."\n".$block."\n" : substr($html,0,$p).$block."\n".substr($html,$p);
+}
 if($out===null||$out==='') exit("\nFAIL: rewrite failed. Nothing changed.\n");
 
 echo "\nprevious install: ".($had?'yes, replacing':'no, first run')."\n";
