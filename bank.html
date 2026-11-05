@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Post Bank — 3G's Command Center</title>
+<style>
+:root{--bg:#FBF6EE;--card:#fff;--ink:#1B1714;--mute:#6B6158;--line:#E7DDCF;--gold:#C9A24E;--mark:#A8812F;
+ --green:#15803D;--red:#B91C1C;--ui:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 var(--ui);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;
+ padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+header{background:var(--ink);color:#F5EBDA;position:sticky;top:env(safe-area-inset-top,0px);z-index:30}
+header .wrap{padding-block:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header b{font:800 15px/1.1 var(--ui);letter-spacing:.06em;display:block}
+header small{display:block;color:var(--gold);font-size:12px}
+.back{margin-left:auto;background:transparent;border:1px solid #5b5149;color:#F5EBDA;border-radius:999px;
+ padding:9px 15px;font:700 13px var(--ui);text-decoration:none;white-space:nowrap}
+.tally{background:var(--gold);color:var(--ink);border-radius:999px;padding:8px 13px;font:800 13px var(--ui);white-space:nowrap}
+
+.bar{background:#F3EADB;border-bottom:1px solid var(--line);position:sticky;top:calc(env(safe-area-inset-top,0px) + 52px);z-index:25}
+.bar .wrap{padding-block:11px;display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.find{flex:1;min-width:180px;font:16px var(--ui);padding:12px 14px;border:2px solid var(--line);border-radius:11px;background:#fff;color:var(--ink)}
+.find:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+.chip{appearance:none;border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;
+ padding:11px 16px;font:700 14px var(--ui);cursor:pointer;min-height:46px}
+.chip[aria-pressed="true"]{background:var(--gold);border-color:var(--ink)}
+
+h2{font:800 16px/1 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:26px 2px 12px}
+.grid{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card.done{opacity:.44}
+.card img{display:block;width:100%;background:#111;aspect-ratio:4/5;object-fit:cover}
+.in{padding:13px 14px 14px;display:flex;flex-direction:column;gap:9px;flex:1}
+.nm{font:700 15px/1.25 var(--ui);word-break:break-word}
+.acct{font:600 13px var(--ui);color:var(--mark)}
+.cap{font-size:14.5px;line-height:1.45;color:#3F382F;white-space:pre-wrap;word-break:break-word;
+ max-height:7.2em;overflow:auto;background:#FAF6EE;border:1px solid var(--line);border-radius:9px;padding:10px}
+.row{display:flex;gap:8px;margin-top:auto}
+.btn{flex:1;appearance:none;border:0;border-radius:10px;padding:14px 8px;font:800 14px var(--ui);cursor:pointer;min-height:48px;
+ display:flex;align-items:center;justify-content:center}
+.copy{background:var(--gold);color:var(--ink)}
+.copy.ok{background:var(--green);color:#fff}
+.tick{background:#fff;color:var(--mute);border:1px solid var(--line)}
+.tick.on{background:#DCFCE7;color:#14532D;border-color:#86EFAC}
+.empty{text-align:center;color:var(--mute);padding:40px 10px}
+footer{padding-block:24px 60px;color:var(--mute);font-size:14px}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <span><b>POST BANK</b><small>3G's Command Center</small></span>
+  <span class="tally" id="tally">0 posted</span>
+  <a class="back" href="index.html">Command Center</a>
+</div></header>
+
+<div class="bar"><div class="wrap">
+  <input class="find" id="find" type="search" placeholder="Search captions and names…" aria-label="Search the bank">
+  <button class="chip" data-c="all" aria-pressed="true">All</button>
+  <button class="chip" data-c="gpts" aria-pressed="false">GPTS</button>
+  <button class="chip" data-c="ambassador" aria-pressed="false">Ambassador</button>
+  <button class="chip" data-c="apparel" aria-pressed="false">Apparel</button>
+  <button class="chip" data-c="todo" aria-pressed="false">Not posted</button>
+</div></div>
+
+<main class="wrap" id="out"><p class="empty">Loading the bank…</p></main>
+
+<footer class="wrap">
+  <p><strong>How to use it:</strong> press and hold a picture to save it, tap <strong>Copy</strong> for the caption, then post it on the account named on the card. Tap <strong>Posted</strong> to grey it out.</p>
+  <p>Ticks are saved on this device. GPTS captions carry the sale line and 352-931-3768. Ambassador captions carry the earnings disclosure and the under-18 line — do not remove them.</p>
+</footer>
+
+<script>
+var DATA=null, FILTER='all', Q='';
+function got(k){ try{ return localStorage.getItem('pb_'+k)==='1'; }catch(e){ return false; } }
+function set(k,v){ try{ localStorage.setItem('pb_'+k, v?'1':'0'); }catch(e){} }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function nice(k){ return k.replace(/[-_]/g,' ').replace(/\b\w/g,function(m){return m.toUpperCase();}); }
+
+fetch('bank-data.json?v=1').then(function(r){return r.json();}).then(function(d){ DATA=d; render(); })
+ .catch(function(){ document.getElementById('out').innerHTML='<p class="empty">Could not load the bank file.</p>'; });
+
+function rows(){
+  var all=[];
+  ['gpts','ambassador','apparel'].forEach(function(c){
+    (DATA.campaigns[c]||[]).forEach(function(r){ all.push(Object.assign({c:c}, r)); });
+  });
+  return all.filter(function(r){
+    if (FILTER==='todo') { if (got(r.k)) return false; }
+    else if (FILTER!=='all' && r.c!==FILTER) return false;
+    if (Q && (r.k+' '+r.cap).toLowerCase().indexOf(Q)<0) return false;
+    return true;
+  });
+}
+
+function render(){
+  var list=rows(), out=document.getElementById('out');
+  if(!list.length){ out.innerHTML='<p class="empty">Nothing matches.</p>'; tally(); return; }
+  var by={}; list.forEach(function(r){ (by[r.c]=by[r.c]||[]).push(r); });
+  var html='';
+  ['gpts','ambassador','apparel'].forEach(function(c){
+    if(!by[c]) return;
+    html += '<h2>'+(c==='gpts'?'GPTS · Transportation':c==='ambassador'?'Ambassadors':'Apparel &amp; Group Orders')+' — '+by[c].length+'</h2><div class="grid">';
+    by[c].forEach(function(r){
+      html += '<article class="card'+(got(r.k)?' done':'')+'" id="k_'+esc(r.k)+'">'
+        + '<img src="'+DATA.base+c+'/'+encodeURIComponent(r.f)+'" alt="'+esc(nice(r.k))+'" loading="lazy">'
+        + '<div class="in">'
+        +   '<div class="nm">'+esc(nice(r.k))+'</div>'
+        +   '<div class="acct">Post on @'+esc(r.acct)+'</div>'
+        +   '<div class="cap" id="t_'+esc(r.k)+'">'+esc(r.cap)+'</div>'
+        +   '<div class="row">'
+        +     '<button class="btn copy" data-copy="'+esc(r.k)+'">Copy</button>'
+        +     '<button class="btn tick'+(got(r.k)?' on':'')+'" data-tick="'+esc(r.k)+'">'+(got(r.k)?'Posted':'Mark posted')+'</button>'
+        +   '</div>'
+        + '</div></article>';
+    });
+    html += '</div>';
+  });
+  out.innerHTML=html; tally();
+}
+
+function tally(){
+  var n=0, t=0;
+  ['gpts','ambassador','apparel'].forEach(function(c){
+    (DATA.campaigns[c]||[]).forEach(function(r){ t++; if(got(r.k)) n++; });
+  });
+  document.getElementById('tally').textContent = n+' of '+t+' posted';
+}
+
+document.getElementById('out').addEventListener('click', function(e){
+  var cb=e.target.closest('[data-copy]');
+  if(cb){
+    var k=cb.getAttribute('data-copy');
+    var el=document.getElementById('t_'+k); var txt=el?el.textContent:'';
+    var ok=function(){ cb.textContent='Copied'; cb.classList.add('ok');
+      setTimeout(function(){ cb.textContent='Copy'; cb.classList.remove('ok'); },1500); };
+    try { navigator.clipboard.writeText(txt).then(ok, function(){ sel(el); }); }
+    catch(err){ sel(el); }
+    return;
+  }
+  var tb=e.target.closest('[data-tick]');
+  if(tb){ var key=tb.getAttribute('data-tick'); set(key, !got(key)); render(); }
+});
+function sel(el){ if(!el) return; var r=document.createRange(); r.selectNodeContents(el);
+  var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+
+document.querySelector('.bar').addEventListener('click', function(e){
+  var c=e.target.closest('[data-c]'); if(!c) return;
+  FILTER=c.getAttribute('data-c');
+  document.querySelectorAll('.chip').forEach(function(b){ b.setAttribute('aria-pressed', b===c?'true':'false'); });
+  render();
+});
+document.getElementById('find').addEventListener('input', function(e){ Q=e.target.value.trim().toLowerCase(); render(); });
+</script>
+</body>
+</html>

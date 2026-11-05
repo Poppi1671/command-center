@@ -1,0 +1,528 @@
+{
+ "base": "https://raw.githubusercontent.com/Poppi1671/command-center/ig-assets/igbank/",
+ "updated": "2026-11-05",
+ "campaigns": {
+  "gpts": [
+   {
+    "f": "ad05-gpts-landed.jpg",
+    "k": "ad05-gpts-landed",
+    "cap": "Landed. Bags in hand. Driver already waiting. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "ad06-gpts-rideshare.jpg",
+    "k": "ad06-gpts-rideshare",
+    "cap": "Rideshare roulette or a driver you booked? Your call. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "car-post-1.jpg",
+    "k": "car-post-1",
+    "cap": "Everyday rides, elevated. One driver, one vehicle, no shared rides and no surprises. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "car-post-2.jpg",
+    "k": "car-post-2",
+    "cap": "Everyday rides, elevated. One driver, one vehicle, no shared rides and no surprises. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "car-post-3.jpg",
+    "k": "car-post-3",
+    "cap": "Everyday rides, elevated. One driver, one vehicle, no shared rides and no surprises. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "car-post-4.jpg",
+    "k": "car-post-4",
+    "cap": "Everyday rides, elevated. One driver, one vehicle, no shared rides and no surprises. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "car-post-5.jpg",
+    "k": "car-post-5",
+    "cap": "Everyday rides, elevated. One driver, one vehicle, no shared rides and no surprises. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "car-post-6.jpg",
+    "k": "car-post-6",
+    "cap": "Everyday rides, elevated. One driver, one vehicle, no shared rides and no surprises. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "car-post-7.jpg",
+    "k": "car-post-7",
+    "cap": "Everyday rides, elevated. One driver, one vehicle, no shared rides and no surprises. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "dv1.jpg",
+    "k": "dv1",
+    "cap": "Private transportation across Central Florida, booked in minutes. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "flyer-1-airport-rides.jpg",
+    "k": "flyer-1-airport-rides",
+    "cap": "Airport rides, done right. Flight tracked, curbside pickup, one driver and one clean SUV. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "flyer-2-vacation-home-rides.jpg",
+    "k": "flyer-2-vacation-home-rides",
+    "cap": "Staying in a vacation home near Davenport or ChampionsGate? We handle the airport run both ways. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "gpts-surge.jpg",
+    "k": "gpts-surge",
+    "cap": "Landing at MCO or TPA? Skip the surge line. Private SUV, flight tracked, curbside pickup. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "gpts-waiting.jpg",
+    "k": "gpts-waiting",
+    "cap": "We watch your flight. Land late and your driver is still there. No surge, no app, no stranger. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "gpts1-last-mile.jpg",
+    "k": "gpts1-last-mile",
+    "cap": "The last mile is the one people remember. Private SUV, help with the bags, no waiting. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "gpts2-same-price.jpg",
+    "k": "gpts2-same-price",
+    "cap": "Same price both ways from Davenport to Orlando or Tampa. No surge, ever. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "gpts3-skip-line.jpg",
+    "k": "gpts3-skip-line",
+    "cap": "Skip the rideshare line. Your driver is at the curb when you land. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "gpts4-family.jpg",
+    "k": "gpts4-family",
+    "cap": "Family trip? Room for the luggage and the kids. Three rows, car seats welcome. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "gpts5-ride-home.jpg",
+    "k": "gpts5-ride-home",
+    "cap": "Book the ride home while you book the ride out. Round trips handled in one call. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "gpts6-safe-travels.jpg",
+    "k": "gpts6-safe-travels",
+    "cap": "One driver. One vehicle. Background checked and insured. That is the whole promise. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "r2-gpts1-arrive-rested.jpg",
+    "k": "r2-gpts1-arrive-rested",
+    "cap": "Arrive rested, not frazzled. Quiet ride, charge ports, on time. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "r2-gpts2-theme-park.jpg",
+    "k": "r2-gpts2-theme-park",
+    "cap": "Theme park day? Get dropped at the gate and picked up when you are done. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "r2-gpts3-late-flight.jpg",
+    "k": "r2-gpts3-late-flight",
+    "cap": "Late flight? We track it. Your driver adjusts and no one charges you for the delay. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "r2-gpts4-grandparents.jpg",
+    "k": "r2-gpts4-grandparents",
+    "cap": "Grandparents flying in? Door to door, bags carried, treated like family. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "r3-07-gpts-mco.jpg",
+    "k": "r3-07-gpts-mco",
+    "cap": "Orlando International pickups, flat rate, no surge. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   },
+   {
+    "f": "r3-08-gpts-early.jpg",
+    "k": "r3-08-gpts-early",
+    "cap": "5am flight? We are up before you are. Early departures are our normal. Sale price $49.95 to $79.95 and the sale ends soon. Orlando MCO and Tampa TPA. Call or text 352-931-3768 or book at pristinedrive.online\n\n#OrlandoAirport #MCO #CentralFlorida #AirportTransfer #DavenportFL",
+    "acct": "digivaultcreatives"
+   }
+  ],
+  "ambassador": [
+   {
+    "f": "ad10-amb-postonce.jpg",
+    "k": "ad10-amb-postonce",
+    "cap": "Post once. Get paid. That is the whole job. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "amb-friday.jpg",
+    "k": "amb-friday",
+    "cap": "Post once. Get paid Friday. We do everything, you just post. Free shirt after 3 sales. No cost, no inventory, no selling. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "amb-throne.jpg",
+    "k": "amb-throne",
+    "cap": "Claim your throne. Wear it, post it, get paid every Friday. We print, pack and ship. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "amb-tiers.jpg",
+    "k": "amb-tiers",
+    "cap": "Three ways to get paid. Crew $5 per order. Creators 15% at 5,000+ followers. Royalty 20% at 10,000+ followers. Paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "amb1-we-write.jpg",
+    "k": "amb1-we-write",
+    "cap": "We write the posts. You just share. Free to join, no inventory, and you earn when your link sells a shirt. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "amb2-shirts-you-believe.jpg",
+    "k": "amb2-shirts-you-believe",
+    "cap": "Wear the shirts you already believe in and get paid when someone else wants one. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "amb3-church-family.jpg",
+    "k": "amb3-church-family",
+    "cap": "Church family, team, group chat. If people listen to you, this pays. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "ambassador-flyer-bear.jpg",
+    "k": "ambassador-flyer-bear",
+    "cap": "Built different. Join the crew, post what you wear, get paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "ambassador-flyer-bull.jpg",
+    "k": "ambassador-flyer-bull",
+    "cap": "Built different. Join the crew, post what you wear, get paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "ambassador-flyer-cobra.jpg",
+    "k": "ambassador-flyer-cobra",
+    "cap": "Built different. Join the crew, post what you wear, get paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "ambassador-flyer-gorilla.jpg",
+    "k": "ambassador-flyer-gorilla",
+    "cap": "Built different. Join the crew, post what you wear, get paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "ambassador-flyer-panther.jpg",
+    "k": "ambassador-flyer-panther",
+    "cap": "Built different. Join the crew, post what you wear, get paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "ambassador-flyer-rhino.jpg",
+    "k": "ambassador-flyer-rhino",
+    "cap": "Built different. Join the crew, post what you wear, get paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "ambassador-flyer-shark.jpg",
+    "k": "ambassador-flyer-shark",
+    "cap": "Built different. Join the crew, post what you wear, get paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "ambassador-flyer-tiger.jpg",
+    "k": "ambassador-flyer-tiger",
+    "cap": "Built different. Join the crew, post what you wear, get paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "ambassador-flyer-wolf.jpg",
+    "k": "ambassador-flyer-wolf",
+    "cap": "Built different. Join the crew, post what you wear, get paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "flyer-ambassador-v4.jpg",
+    "k": "flyer-ambassador-v4",
+    "cap": "Claim your throne. Crew, Creators and Royalty. Free shirt after 3 sales, paid every Friday. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "r3-10-ambassador.jpg",
+    "k": "r3-10-ambassador",
+    "cap": "No cost. No inventory. No selling. You post, we do the rest. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   },
+   {
+    "f": "v11-ambassador.jpg",
+    "k": "v11-ambassador",
+    "cap": "Become an ambassador. Share your link, earn on every order. Join free at urbancanvasapparelco.com/share\n\nEarnings vary. You are paid after payment clears and the 7-day return window passes. Under 18? Get a parent's OK first.\n\n#CentralFlorida #OrlandoCreators #SideHustle #BrandAmbassador #UrbanCanvas",
+    "acct": "threadedtruthsapparelco"
+   }
+  ],
+  "apparel": [
+   {
+    "f": "ad02-reunion-chat.jpg",
+    "k": "ad02-reunion-chat",
+    "cap": "Drop it in the group chat and let the reunion shirts sort themselves at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "ad03-church-family.jpg",
+    "k": "ad03-church-family",
+    "cap": "Church family in matching shirts. Free design at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "ad04-swyw-joke.jpg",
+    "k": "ad04-swyw-joke",
+    "cap": "Say what you want. We will press it at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "ad08-team-link.jpg",
+    "k": "ad08-team-link",
+    "cap": "One link, the whole team orders their own size at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "ad09-faith-wear.jpg",
+    "k": "ad09-faith-wear",
+    "cap": "Wear what you believe. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "ad11-quote-wear.jpg",
+    "k": "ad11-quote-wear",
+    "cap": "Quotes worth wearing. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "ad12-hoodie-season.jpg",
+    "k": "ad12-hoodie-season",
+    "cap": "Hoodie season is here. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "bulk1-free-design.jpg",
+    "k": "bulk1-free-design",
+    "cap": "Free design on every group order. You bring the idea, we draw it at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "bulk2-florida-classic.jpg",
+    "k": "bulk2-florida-classic",
+    "cap": "Florida Classic weekend. Get the whole group in matching tees at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "bulk3-christmas.jpg",
+    "k": "bulk3-christmas",
+    "cap": "Christmas cutoff is December 12. Matching family tees, church choir shirts, team gifts. Design free, pressed by hand. Order at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "fish1.jpg",
+    "k": "fish1",
+    "cap": "For the ones who fish. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "q1.jpg",
+    "k": "q1",
+    "cap": "Quotes worth wearing. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r2-fundraiser.jpg",
+    "k": "r2-fundraiser",
+    "cap": "Your group keeps $5 a shirt and puts up nothing. Fundraising at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r2-gift-bundle.jpg",
+    "k": "r2-gift-bundle",
+    "cap": "Tee plus mug plus tote. One word, three gifts. Pick it, we press it, you wrap it. Christmas cutoff December 12 at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r2-group-nov10.jpg",
+    "k": "r2-group-nov10",
+    "cap": "Group orders for November 10 close soon. Lock yours in at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r2-hats.jpg",
+    "k": "r2-hats",
+    "cap": "Hats, pressed and ready. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r2-hoodies.jpg",
+    "k": "r2-hoodies",
+    "cap": "Hoodie season. Pressed by hand in Central Florida at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r2-mugs.jpg",
+    "k": "r2-mugs",
+    "cap": "Your word on a mug. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r2-totes.jpg",
+    "k": "r2-totes",
+    "cap": "Totes that carry the message. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r2-type-any-word.jpg",
+    "k": "r2-type-any-word",
+    "cap": "Type any word. We press it. Start at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r3-01-last-call.jpg",
+    "k": "r3-01-last-call",
+    "cap": "Last call on this run. Order at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r3-02-church-20.jpg",
+    "k": "r3-02-church-20",
+    "cap": "Churches get 20 percent on group orders. Start at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r3-03-no-minimum.jpg",
+    "k": "r3-03-no-minimum",
+    "cap": "No minimum. Order one or a hundred at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r3-04-gift-box.jpg",
+    "k": "r3-04-gift-box",
+    "cap": "Gift boxed and ready to give. Order yours at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r3-06-reunion.jpg",
+    "k": "r3-06-reunion",
+    "cap": "Family reunion shirts, free design, everyone pays their own. Start at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r3-11-quote.jpg",
+    "k": "r3-11-quote",
+    "cap": "Wear what you believe. Quote tees at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "r3-12-sports.jpg",
+    "k": "r3-12-sports",
+    "cap": "Team shirts, pressed and shipped. Order at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "swyw1.jpg",
+    "k": "swyw1",
+    "cap": "Say what you want, we press it. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "t4u1.jpg",
+    "k": "t4u1",
+    "cap": "Tees for the whole team. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "tt1.jpg",
+    "k": "tt1",
+    "cap": "Wear what you believe. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v1-newspaper.jpg",
+    "k": "v1-newspaper",
+    "cap": "Read all about it. New drop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v10-thermometer.jpg",
+    "k": "v10-thermometer",
+    "cap": "Watch your fundraiser climb. Start one at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v12-question.jpg",
+    "k": "v12-question",
+    "cap": "What would your shirt say? Tell us at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v2-neon.jpg",
+    "k": "v2-neon",
+    "cap": "Loud shirts for loud people. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v3-photo-fullbleed.jpg",
+    "k": "v3-photo-fullbleed",
+    "cap": "Pressed by hand in Central Florida. Shop at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v4-checklist.jpg",
+    "k": "v4-checklist",
+    "cap": "Everything your group order includes. Start at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v5-countdown.jpg",
+    "k": "v5-countdown",
+    "cap": "Christmas group orders close December 12. Matching family tees, church choir shirts, team gifts, free design at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v6-split.jpg",
+    "k": "v6-split",
+    "cap": "Before and after your design hits the press. Start at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v7-notebook.jpg",
+    "k": "v7-notebook",
+    "cap": "Your idea, our press. Sketch it at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v8-gift-tag.jpg",
+    "k": "v8-gift-tag",
+    "cap": "To someone you love. One word, wrapped in a gift bundle at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   },
+   {
+    "f": "v9-faith.jpg",
+    "k": "v9-faith",
+    "cap": "Built by faith. Shop the collection at urbancanvasapparelco.com\n\n#CentralFlorida #Orlando #CustomTees #GroupOrders #UrbanCanvas",
+    "acct": "saywhatyouwantcustomtees"
+   }
+  ]
+ }
+}
